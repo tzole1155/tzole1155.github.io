@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yuan Honglin | galbanis</title>
+    <link>https://tzole1155.github.io/author/yuan-honglin/</link>
+      <atom:link href="https://tzole1155.github.io/author/yuan-honglin/index.xml" rel="self" type="application/rss+xml" />
+    <description>Yuan Honglin</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Yuan Honglin</title>
+      <link>https://tzole1155.github.io/author/yuan-honglin/</link>
+    </image>
+    
+    <item>
+      <title>SHREC 2020 track: 6D object pose estimation</title>
+      <link>https://tzole1155.github.io/publication/shrec/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/shrec/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; 6D pose estimation is crucial for augmented reality, virtual reality, robotic manipulation and visual navigation. However, the problem is challenging due to the variety of objects in the real world. They have varying 3D shape and their appearances in captured images are affected by sensor noise, changing lighting conditions and occlusions between objects. Different pose estimation methods have different strengths and weaknesses, depending on feature representations and scene contents. At the same time, existing 3D datasets that are used for data-driven methods to estimate 6D poses have limited view angles and low resolution. To address these issues, we organize the Shape Retrieval Challenge benchmark on 6D pose estimation and create a physically accurate simulator that is able to generate photo-realistic color-and-depth image pairs with corresponding ground truth 6D poses. From captured color and depth images, we use this simulator to generate a 3D dataset which has 400 photo-realistic synthesized color-and-depth image pairs with various view angles for training, and another 100 captured and synthetic images for testing. Five research groups register in this track and two of them submitted their results. Data-driven methods are the current trend in 6D object pose estimation and our evaluation results show that approaches which fully exploit the color and geometric features are more robust for 6D pose estimation of reflective and texture-less objects and occlusion. This benchmark and comparative evaluation results have the potential to further enrich and boost the research of 6D object pose estimation and its applications.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; 6D object pose; deep learning;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

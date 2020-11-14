@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dimou Anastasios | galbanis</title>
+    <link>https://tzole1155.github.io/author/dimou-anastasios/</link>
+      <atom:link href="https://tzole1155.github.io/author/dimou-anastasios/index.xml" rel="self" type="application/rss+xml" />
+    <description>Dimou Anastasios</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Dimou Anastasios</title>
+      <link>https://tzole1155.github.io/author/dimou-anastasios/</link>
+    </image>
+    
+    <item>
+      <title>DronePose: Photorealistic UAV-Assistant Dataset Synthesis for 3D Pose Estimation via a Smooth Silhouette Loss</title>
+      <link>https://tzole1155.github.io/publication/dronepose/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/dronepose/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; In this work we consider UAVs as cooperative agents supporting human users in their operations. In this context, the 3D localisation of the UAV assistant is an important task that can facilitate the exchange of spatial information between the user and the UAV. To address this in a data-driven manner, we design a data synthesis pipeline to create a realistic multimodal dataset that includes both the exocentric user view, and the egocentric UAV view. We then exploit the joint availability of photorealistic and synthesized inputs to train a single-shot monocular pose estimation model. During training we leverage differentiable rendering to supplement a state-of-the-art direct regression objective with a novel smooth silhouette loss. Our results demonstrate its qualitative and quantitative performance gains over traditional silhouette objectives.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; 6D drone pose; deep learning; datasets&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
