@@ -5,7 +5,7 @@
     <link>https://tzole1155.github.io/publication/</link>
       <atom:link href="https://tzole1155.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Thu, 26 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://tzole1155.github.io/images/icon_hub1858da7fc31188164f404c427cf20d5_53189_512x512_fill_lanczos_center_2.png</url>
       <title>Publications</title>
@@ -13,13 +13,19 @@
     </image>
     
     <item>
+      <title>Enabling gesture-based controls for first responders and K9 units</title>
+      <link>https://tzole1155.github.io/publication/enabling_gesture/</link>
+      <pubDate>Thu, 26 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/enabling_gesture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>SHREC 2020 track: 6D object pose estimation</title>
       <link>https://tzole1155.github.io/publication/shrec/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       <guid>https://tzole1155.github.io/publication/shrec/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; 6D pose estimation is crucial for augmented reality, virtual reality, robotic manipulation and visual navigation. However, the problem is challenging due to the variety of objects in the real world. They have varying 3D shape and their appearances in captured images are affected by sensor noise, changing lighting conditions and occlusions between objects. Different pose estimation methods have different strengths and weaknesses, depending on feature representations and scene contents. At the same time, existing 3D datasets that are used for data-driven methods to estimate 6D poses have limited view angles and low resolution. To address these issues, we organize the Shape Retrieval Challenge benchmark on 6D pose estimation and create a physically accurate simulator that is able to generate photo-realistic color-and-depth image pairs with corresponding ground truth 6D poses. From captured color and depth images, we use this simulator to generate a 3D dataset which has 400 photo-realistic synthesized color-and-depth image pairs with various view angles for training, and another 100 captured and synthetic images for testing. Five research groups register in this track and two of them submitted their results. Data-driven methods are the current trend in 6D object pose estimation and our evaluation results show that approaches which fully exploit the color and geometric features are more robust for 6D pose estimation of reflective and texture-less objects and occlusion. This benchmark and comparative evaluation results have the potential to further enrich and boost the research of 6D object pose estimation and its applications.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; 6D object pose; deep learning;&lt;/p&gt;
-</description>
+      <description></description>
     </item>
     
     <item>
@@ -27,9 +33,23 @@
       <link>https://tzole1155.github.io/publication/dronepose/</link>
       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
       <guid>https://tzole1155.github.io/publication/dronepose/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; In this work we consider UAVs as cooperative agents supporting human users in their operations. In this context, the 3D localisation of the UAV assistant is an important task that can facilitate the exchange of spatial information between the user and the UAV. To address this in a data-driven manner, we design a data synthesis pipeline to create a realistic multimodal dataset that includes both the exocentric user view, and the egocentric UAV view. We then exploit the joint availability of photorealistic and synthesized inputs to train a single-shot monocular pose estimation model. During training we leverage differentiable rendering to supplement a state-of-the-art direct regression objective with a novel smooth silhouette loss. Our results demonstrate its qualitative and quantitative performance gains over traditional silhouette objectives.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; 6D drone pose; deep learning; datasets&lt;/p&gt;
-</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Single-handed gesture UAV control for first responders - a usability and performance user study</title>
+      <link>https://tzole1155.github.io/publication/singlehand/</link>
+      <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/singlehand/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Human-centered factories from theory to industrial practice. Lessons learned and recommendations.</title>
+      <link>https://tzole1155.github.io/publication/humanfactory/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/humanfactory/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -37,9 +57,15 @@
       <link>https://tzole1155.github.io/publication/gamification/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
       <guid>https://tzole1155.github.io/publication/gamification/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; This paper presents gamification concepts implemented by a gamification engine which is incorporated in a knowledge sharing web-based application. The engine aims at increasing user’s motivation and participation in knowledge sharing and training processes taking place on a factory’s shop floor, enhance socialization and support corrective feedback and positive reinforcement. In particular, it motivates workers to participate in discussions, propose solutions to work-related problems, and upload/view useful content even when being at the workplace. The gamification engine makes use of various gamification elements and is highly configurable in terms of management of gamified tasks. It is designed to support access by both standard display devices (PCs, tablets, mobile phones) as well as Mixed/Augmented Reality platforms, such as Microsoft HoloLens, which are gaining significant traction with industry verticals. The main novelty of the gamification concepts presented is the ability to utilize dynamic worker profile information which is stored in a central database, in order to improve the effectiveness of the gamified tasks, targeting at more effective usage of the knowledge sharing platform in the Industry 4.0 domain.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; Augmented Reality, Industry 4.0&lt;/p&gt;
-</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adaptive web-based tools for capability-driven workforce management and task sequencing optimization</title>
+      <link>https://tzole1155.github.io/publication/adaptive/</link>
+      <pubDate>Wed, 05 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/adaptive/</guid>
+      <description></description>
     </item>
     
   </channel>

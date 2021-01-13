@@ -5,7 +5,7 @@
     <link>https://tzole1155.github.io/author/zikos-stylianos/</link>
       <atom:link href="https://tzole1155.github.io/author/zikos-stylianos/index.xml" rel="self" type="application/rss+xml" />
     <description>Zikos Stylianos</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Giorgos Albanis</copyright><lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://tzole1155.github.io/images/icon_hub1858da7fc31188164f404c427cf20d5_53189_512x512_fill_lanczos_center_2.png</url>
       <title>Zikos Stylianos</title>
@@ -13,13 +13,19 @@
     </image>
     
     <item>
+      <title>Human-centered factories from theory to industrial practice. Lessons learned and recommendations.</title>
+      <link>https://tzole1155.github.io/publication/humanfactory/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/humanfactory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Gamification concepts for leveraging knowledge sharing in Industry 4.0</title>
       <link>https://tzole1155.github.io/publication/gamification/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
       <guid>https://tzole1155.github.io/publication/gamification/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;[Abstract]&lt;/strong&gt; This paper presents gamification concepts implemented by a gamification engine which is incorporated in a knowledge sharing web-based application. The engine aims at increasing user’s motivation and participation in knowledge sharing and training processes taking place on a factory’s shop floor, enhance socialization and support corrective feedback and positive reinforcement. In particular, it motivates workers to participate in discussions, propose solutions to work-related problems, and upload/view useful content even when being at the workplace. The gamification engine makes use of various gamification elements and is highly configurable in terms of management of gamified tasks. It is designed to support access by both standard display devices (PCs, tablets, mobile phones) as well as Mixed/Augmented Reality platforms, such as Microsoft HoloLens, which are gaining significant traction with industry verticals. The main novelty of the gamification concepts presented is the ability to utilize dynamic worker profile information which is stored in a central database, in order to improve the effectiveness of the gamified tasks, targeting at more effective usage of the knowledge sharing platform in the Industry 4.0 domain.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;[Key Words]&lt;/strong&gt; Augmented Reality, Industry 4.0&lt;/p&gt;
-</description>
+      <description></description>
     </item>
     
   </channel>
