@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications | Georgios Albanis</title>
+    <link>https://tzole1155.github.io/publication/</link>
+      <atom:link href="https://tzole1155.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Publications</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/media/icon_hube4d0b95d2343b4968ca3e7d60bfcd5a_85364_512x512_fill_lanczos_center_3.png</url>
+      <title>Publications</title>
+      <link>https://tzole1155.github.io/publication/</link>
+    </image>
+    
+    <item>
+      <title>An AI-Based System Offering Automatic DR-Enhanced AR for Indoor Scenes</title>
+      <link>https://tzole1155.github.io/publication/albanis-2023-ai/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2023-ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Noise-in, Bias-out: Balanced and Real-time MoCap Solving</title>
+      <link>https://tzole1155.github.io/publication/albanis-2023-noise/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2023-noise/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Suit Up: AI MoCap</title>
+      <link>https://tzole1155.github.io/publication/chatzitofis-2023-suit/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/chatzitofis-2023-suit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A low-cost &amp; real-time motion capture system</title>
+      <link>https://tzole1155.github.io/publication/chatzitofis-2022-low/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/chatzitofis-2022-low/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Drone control in AR: an intuitive system for single-handed gesture control, drone tracking, and contextualized camera feed visualization in augmented reality</title>
+      <link>https://tzole1155.github.io/publication/konstantoudakis-2022-drone/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/konstantoudakis-2022-drone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hybrid skip: A biologically inspired skip connection for the UNet architecture</title>
+      <link>https://tzole1155.github.io/publication/zioulis-2022-hybrid/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/zioulis-2022-hybrid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards Scalable and Real-time Markerless Motion Capture</title>
+      <link>https://tzole1155.github.io/publication/albanis-2022-towards/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2022-towards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A benchmark with decomposed distribution shifts for 360 monocular depth estimation</title>
+      <link>https://tzole1155.github.io/publication/albanis-2021-benchmark/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2021-benchmark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On Coordinate Decoding for Keypoint Estimation Tasks</title>
+      <link>https://tzole1155.github.io/publication/chatzitofis-2021-coordinate/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/chatzitofis-2021-coordinate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On end-to-end 6DOF object pose estimation and robustness to object scale</title>
+      <link>https://tzole1155.github.io/publication/albanis-2021-end/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2021-end/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pano3d: A holistic benchmark and a solid baseline for 360deg depth estimation</title>
+      <link>https://tzole1155.github.io/publication/albanis-2021-pano-3-d/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2021-pano-3-d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Panodr: Spherical panorama diminished reality for indoor scenes</title>
+      <link>https://tzole1155.github.io/publication/gkitsas-2021-panodr/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/gkitsas-2021-panodr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Single-Handed Gesture UAV Control and Video Feed AR Visualization for First Responders</title>
+      <link>https://tzole1155.github.io/publication/sainidis-2021-single/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/sainidis-2021-single/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards user generated AR experiences: Enable consumers to generate their own AR experiences for planning indoor spaces</title>
+      <link>https://tzole1155.github.io/publication/whitehand-2021-towards/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/whitehand-2021-towards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Volume-of-interest aware deep neural networks for rapid chest CT-based COVID-19 patient risk assessment</title>
+      <link>https://tzole1155.github.io/publication/chatzitofis-2021-volume/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/chatzitofis-2021-volume/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An example preprint / working paper</title>
+      <link>https://tzole1155.github.io/publication/preprint/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/preprint/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Add the publication&amp;rsquo;s &lt;strong&gt;full text&lt;/strong&gt; or &lt;strong&gt;supplementary notes&lt;/strong&gt; here. You can use rich formatting such as including &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example journal article</title>
+      <link>https://tzole1155.github.io/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/journal-article/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Add the publication&amp;rsquo;s &lt;strong&gt;full text&lt;/strong&gt; or &lt;strong&gt;supplementary notes&lt;/strong&gt; here. You can use rich formatting such as including &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>https://tzole1155.github.io/publication/conference-paper/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/conference-paper/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Add the publication&amp;rsquo;s &lt;strong&gt;full text&lt;/strong&gt; or &lt;strong&gt;supplementary notes&lt;/strong&gt; here. You can use rich formatting such as including &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

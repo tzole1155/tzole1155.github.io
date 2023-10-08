@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Georgios Albanis</title>
+    <link>https://tzole1155.github.io/project/</link>
+      <atom:link href="https://tzole1155.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/media/icon_hube4d0b95d2343b4968ca3e7d60bfcd5a_85364_512x512_fill_lanczos_center_3.png</url>
+      <title>Projects</title>
+      <link>https://tzole1155.github.io/project/</link>
+    </image>
+    
+    <item>
+      <title>Moai</title>
+      <link>https://tzole1155.github.io/project/moai/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/moai/</guid>
+      <description>&lt;p&gt;moai is a PyTorch-based AI Model Development Kit (MDK) that aims to improve data-driven model workflows, design and understanding. Since it is based on established open-source packages, it can be readily used to improve most AI workflows. To explore moai, simply install the package and follow the examples, having in mind that it is in early development alpha version, thus new features will be available soon.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
