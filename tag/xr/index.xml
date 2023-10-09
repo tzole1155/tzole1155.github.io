@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XR | Georgios Albanis</title>
+    <link>https://tzole1155.github.io/tag/xr/</link>
+      <atom:link href="https://tzole1155.github.io/tag/xr/index.xml" rel="self" type="application/rss+xml" />
+    <description>XR</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/media/icon_hube4d0b95d2343b4968ca3e7d60bfcd5a_85364_512x512_fill_lanczos_center_3.png</url>
+      <title>XR</title>
+      <link>https://tzole1155.github.io/tag/xr/</link>
+    </image>
+    
+    <item>
+      <title>ATLANTIS</title>
+      <link>https://tzole1155.github.io/project/atlantis/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/atlantis/</guid>
+      <description>&lt;p&gt;In many application areas (e.g. interior design, furniture retailing or renovation), communication with a customer or future user during the planning and design phase it is crucial for selecting the right products and configurations. AR has the potential to make the communication processes highly effective and provide a better experience for the customer. Current AR authoring solutions are quite complex and require manually creating scenes or rely on objects prepared with even more complex applications (e.g. CAD). ATLANTIS will fill this gap in authoring AR experiences by creating a faithful textured geometric (3D) representation from images of the real scene and identifying and segmenting objects in the scene and associating them with the 3D representation.&lt;/p&gt;
+&lt;p&gt;The ATLANTIS authoring tool will enable the fusion of 3D CG elements with real scenes in a guided manner using artificial intelligence (AI) to facilitate more productive and effective content creation. This allows automatic alignment of inserted objects and automated layout generation, enabling the user to interact with different options without the need to manually author each of them. In addition, ATLANTIS will innovate beyond traditional AR authoring by complementing the capacity with Diminished Reality (DR) authoring capabilities, enabling the removal and replacement of real objects in the scene allowing to visualise also heavy changes to an environment. The innovations of ATLANTIS will be integrated in an existing solution for interior design and retailing, and validated with professionals and customers.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>FASTER</title>
+      <link>https://tzole1155.github.io/project/faster/</link>
+      <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/faster/</guid>
+      <description>&lt;p&gt;FASTER establishes a new approach for disaster response in order to improve Europe’s overall disaster resilience. This will be accomplished by the targeted employment and synergetic deployment of a set of appropriate and complementary technologies. Immediate response is the second phase of the disaster management cycle and is a very important aspect for dealing effectively with disasters. Consequently, FASTER improves the disaster response and monitoring capabilities by providing first responders with a suite of core and supplementary tools to augment their situational awareness and, as a result, guarantee their safety as well as enhance their operational capacity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Factory2Fit</title>
+      <link>https://tzole1155.github.io/project/factory2fit/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/factory2fit/</guid>
+      <description>&lt;p&gt;Smart factories mean more automation and more customisation. Flexible and adaptive environments are crucial – both for productivity and for work satisfaction. The Factory2Fit project will develop adaption solutions to engage and motivate manufacturing workers with different skills, capabilities and preferences. Essentially, it will help current and future workers to become knowledge workers in smart factories with fulfilling careers.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

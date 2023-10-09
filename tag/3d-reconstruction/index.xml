@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3D reconstruction | Georgios Albanis</title>
+    <link>https://tzole1155.github.io/tag/3d-reconstruction/</link>
+      <atom:link href="https://tzole1155.github.io/tag/3d-reconstruction/index.xml" rel="self" type="application/rss+xml" />
+    <description>3D reconstruction</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://tzole1155.github.io/media/icon_hube4d0b95d2343b4968ca3e7d60bfcd5a_85364_512x512_fill_lanczos_center_3.png</url>
+      <title>3D reconstruction</title>
+      <link>https://tzole1155.github.io/tag/3d-reconstruction/</link>
+    </image>
+    
+    <item>
+      <title>Pano3d: A holistic benchmark and a solid baseline for 360deg depth estimation</title>
+      <link>https://tzole1155.github.io/publication/albanis-2021-pano-3-d/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/publication/albanis-2021-pano-3-d/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
