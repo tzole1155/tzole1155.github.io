@@ -58,16 +58,28 @@
     <lastmod>2023-10-08T17:09:00+03:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://tzole1155.github.io/talk/omnicv/</loc>
+    <lastmod>2021-06-02T13:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tag/oral-presentation/</loc>
+    <lastmod>2021-06-02T13:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tags/</loc>
+    <lastmod>2023-10-08T17:08:55+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tag/3d-reconstruction/</loc>
+    <lastmod>2023-10-08T17:08:55+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://tzole1155.github.io/publication/albanis-2021-benchmark/</loc>
     <lastmod>2023-10-08T17:08:59+03:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/publication-type/article/</loc>
     <lastmod>2023-10-08T17:08:56+03:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://tzole1155.github.io/tag/deep-learning/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/project/moai/</loc>
@@ -80,6 +92,10 @@
   </url><url>
     <loc>https://tzole1155.github.io/publication/albanis-2021-end/</loc>
     <lastmod>2023-10-08T17:08:56+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tag/open-source/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/publication/albanis-2021-pano-3-d/</loc>
@@ -96,10 +112,6 @@
   </url><url>
     <loc>https://tzole1155.github.io/publication/sainidis-2021-single/</loc>
     <lastmod>2023-10-08T17:08:58+03:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://tzole1155.github.io/tags/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/publication/whitehand-2021-towards/</loc>
@@ -138,8 +150,24 @@
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://tzole1155.github.io/project/atlantis/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tag/h2020/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/tag/xr/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://tzole1155.github.io/post/writing-technical-content/</loc>
     <lastmod>2019-07-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/project/faster/</loc>
+    <lastmod>2019-06-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/publication/preprint/</loc>
@@ -168,6 +196,10 @@
   </url><url>
     <loc>https://tzole1155.github.io/terms/</loc>
     <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://tzole1155.github.io/project/factory2fit/</loc>
+    <lastmod>2018-06-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://tzole1155.github.io/publication/journal-article/</loc>

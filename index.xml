@@ -89,6 +89,26 @@
     </item>
     
     <item>
+      <title>OmniCV</title>
+      <link>https://tzole1155.github.io/talk/omnicv/</link>
+      <pubDate>Wed, 02 Jun 2021 13:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/talk/omnicv/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Wowchemy&amp;rsquo;s &lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Further event details, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;page elements&lt;/a&gt; such as image galleries, can be added to the body of this page.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>A benchmark with decomposed distribution shifts for 360 monocular depth estimation</title>
       <link>https://tzole1155.github.io/publication/albanis-2021-benchmark/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
@@ -242,6 +262,16 @@
     </item>
     
     <item>
+      <title>ATLANTIS</title>
+      <link>https://tzole1155.github.io/project/atlantis/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/atlantis/</guid>
+      <description>&lt;p&gt;In many application areas (e.g. interior design, furniture retailing or renovation), communication with a customer or future user during the planning and design phase it is crucial for selecting the right products and configurations. AR has the potential to make the communication processes highly effective and provide a better experience for the customer. Current AR authoring solutions are quite complex and require manually creating scenes or rely on objects prepared with even more complex applications (e.g. CAD). ATLANTIS will fill this gap in authoring AR experiences by creating a faithful textured geometric (3D) representation from images of the real scene and identifying and segmenting objects in the scene and associating them with the 3D representation.&lt;/p&gt;
+&lt;p&gt;The ATLANTIS authoring tool will enable the fusion of 3D CG elements with real scenes in a guided manner using artificial intelligence (AI) to facilitate more productive and effective content creation. This allows automatic alignment of inserted objects and automated layout generation, enabling the user to interact with different options without the need to manually author each of them. In addition, ATLANTIS will innovate beyond traditional AR authoring by complementing the capacity with Diminished Reality (DR) authoring capabilities, enabling the removal and replacement of real objects in the scene allowing to visualise also heavy changes to an environment. The innovations of ATLANTIS will be integrated in an existing solution for interior design and retailing, and validated with professionals and customers.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Writing technical content in Markdown</title>
       <link>https://tzole1155.github.io/post/writing-technical-content/</link>
       <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
@@ -345,7 +375,7 @@ data.head()
 
 
 
-&lt;div id=&#34;chart-749815623&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-236971548&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -355,7 +385,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-749815623&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-236971548&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();
@@ -636,6 +666,15 @@ Crash --&gt; [*]
     </item>
     
     <item>
+      <title>FASTER</title>
+      <link>https://tzole1155.github.io/project/faster/</link>
+      <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/faster/</guid>
+      <description>&lt;p&gt;FASTER establishes a new approach for disaster response in order to improve Europe’s overall disaster resilience. This will be accomplished by the targeted employment and synergetic deployment of a set of appropriate and complementary technologies. Immediate response is the second phase of the disaster management cycle and is a very important aspect for dealing effectively with disasters. Consequently, FASTER improves the disaster response and monitoring capabilities by providing first responders with a suite of core and supplementary tools to augment their situational awareness and, as a result, guarantee their safety as well as enhance their operational capacity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>An example preprint / working paper</title>
       <link>https://tzole1155.github.io/publication/preprint/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
@@ -745,7 +784,11 @@ Crash --&gt; [*]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Eating...&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
 &lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
-&lt;!-- In-line math: $x + y = z$ --&gt;
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+&lt;p&gt;Block math:&lt;/p&gt;
+&lt;p&gt;$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
 &lt;p&gt;Make content appear incrementally&lt;/p&gt;
@@ -898,6 +941,15 @@ These terms are governed by and construed in accordance with the laws of Greee a
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Your respect for these terms is appreciated. Should you have any questions or concerns, please do not hesitate to contact me.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Factory2Fit</title>
+      <link>https://tzole1155.github.io/project/factory2fit/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://tzole1155.github.io/project/factory2fit/</guid>
+      <description>&lt;p&gt;Smart factories mean more automation and more customisation. Flexible and adaptive environments are crucial – both for productivity and for work satisfaction. The Factory2Fit project will develop adaption solutions to engage and motivate manufacturing workers with different skills, capabilities and preferences. Essentially, it will help current and future workers to become knowledge workers in smart factories with fulfilling careers.&lt;/p&gt;
 </description>
     </item>
     
