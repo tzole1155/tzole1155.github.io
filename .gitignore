@@ -1,0 +1,19 @@
+# Local dev server (not needed on GitHub Pages)
+serve.py
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.py
+/scripts
+.robots.txt
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Georgios Albanis</title>
+
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- highlight.js for code blocks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">G<span>.</span>Albanis</a>
+      <ul class="nav-links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#publications">Publications</a></li>
+        <li><a href="./">Blog</a></li>
+        <li><a href="../#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <a href="./" class="post-back"><i class="fas fa-arrow-left"></i> All posts</a>
+      <div class="post-meta">
+        <span id="post-date" class="post-date"></span>
+        <span id="post-tags"></span>
+      </div>
+      <h1 id="post-title" class="post-title">Loading...</h1>
+      <p id="post-excerpt" class="post-excerpt"></p>
+    </div>
+  </header>
+
+  <main class="post-content">
+    <div class="container">
+      <div id="post-body" class="post-body">
+        <p style="color: var(--text-muted);">Loading post...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Georgios Albanis. All rights reserved.</span>
+        <span><a href="./">Back to blog</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Markdown parser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      breaks: false,
+      gfm: true
+    });
+  </script>
+  <script src="../js/main.js"></script>
+  <script>
+    initNav();
+    initBlogViewer();
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+[
+  {
+    "id": "zioulis-2025-skinning",
+    "title": "On the Skinning of Gaussian Avatars",
+    "authors": ["Nikolaos Zioulis", "Nikolaos Kotarelas", "Georgios Albanis", "Spyridon Thermos", "Anargyros Chatzitofis"],
+    "venue": "arXiv preprint arXiv:2509.11411",
+    "year": 2025,
+    "type": "preprint",
+    "featured": false,
+    "abstract": "Radiance field-based methods have recently been used to reconstruct human avatars, showing that we can significantly downscale the systems needed for creating animated human avatars. With Gaussian splatting overcoming the challenges of slow rendering and backward mapping, a new family of approaches has emerged. However, the linear blend skinning required for the deformation of the Gaussians does not provide valid results for their non-linear rotation properties. This work addresses such artifacts in Gaussian avatar skinning.",
+    "links": {
+      "pdf": "https://arxiv.org/pdf/2509.11411"
+    },
+    "bibtex": "@article{zioulis2025skinning,\n  author = {Zioulis, Nikolaos and Kotarelas, Nikolaos and Albanis, Georgios and Thermos, Spyridon and Chatzitofis, Anargyros},\n  journal = {arXiv preprint arXiv:2509.11411},\n  title = {On the Skinning of Gaussian Avatars},\n  year = {2025}\n}"
+  },
+  {
+    "id": "albanis-2025-bias",
+    "title": "From Bias to Balance: Leverage Representation Learning for Bias-Free MoCap Solving",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Spyridon Thermos", "Anargyros Chatzitofis", "Kostas Kolomvatsos"],
+    "venue": "Computer Vision and Image Understanding",
+    "year": 2025,
+    "type": "journal",
+    "featured": true,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{albanis2025bias,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Thermos, Spyridon and Chatzitofis, Anargyros and Kolomvatsos, Kostas},\n  journal = {Computer Vision and Image Understanding},\n  volume = {251},\n  pages = {104241},\n  title = {From Bias to Balance: Leverage Representation Learning for Bias-Free MoCap Solving},\n  year = {2025}\n}"
+  },
+  {
+    "id": "albanis-2024-bundlemocappp",
+    "title": "BundleMoCap++: Efficient, Robust and Smooth Motion Capture from Sparse Multiview Videos",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Kostas Kolomvatsos"],
+    "venue": "Computer Vision and Image Understanding",
+    "year": 2024,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{albanis2024bundlemocappp,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Kolomvatsos, Kostas},\n  journal = {Computer Vision and Image Understanding},\n  volume = {249},\n  pages = {104190},\n  title = {BundleMoCap++: Efficient, Robust and Smooth Motion Capture from Sparse Multiview Videos},\n  year = {2024}\n}"
+  },
+  {
+    "id": "tselepi-2024-controlling",
+    "title": "Controlling Diversity in Single-shot Motion Synthesis",
+    "authors": ["Eleni Tselepi", "Spyridon Thermos", "Georgios Albanis", "Anargyros Chatzitofis"],
+    "venue": "SIGGRAPH Asia 2024 Posters",
+    "year": 2024,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {
+      "project": "https://moverseai.github.io/single-shot/"
+    },
+    "bibtex": "@inproceedings{tselepi2024controlling,\n  author = {Tselepi, Eleni and Thermos, Spyridon and Albanis, Georgios and Chatzitofis, Anargyros},\n  booktitle = {SIGGRAPH Asia 2024 Posters},\n  pages = {80:1--80:2},\n  title = {Controlling Diversity in Single-shot Motion Synthesis},\n  year = {2024}\n}"
+  },
+  {
+    "id": "albanis-2023-bundlemocap",
+    "title": "BundleMoCap: Efficient, Robust and Smooth Motion Capture from Sparse Multiview Videos",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Kostas Kolomvatsos"],
+    "venue": "Proceedings of the 20th ACM SIGGRAPH European Conference on Visual Media Production (CVMP)",
+    "year": 2023,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {
+      "project": "https://moverseai.github.io/bundle/"
+    },
+    "bibtex": "@inproceedings{albanis2023bundlemocap,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Kolomvatsos, Kostas},\n  booktitle = {Proceedings of the 20th ACM SIGGRAPH European Conference on Visual Media Production (CVMP)},\n  pages = {6:1--6:9},\n  title = {BundleMoCap: Efficient, Robust and Smooth Motion Capture from Sparse Multiview Videos},\n  year = {2023}\n}"
+  },
+  {
+    "id": "albanis-2023-noise",
+    "title": "Noise-in, Bias-out: Balanced and Real-time MoCap Solving",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Spyridon Thermos", "Anargyros Chatzitofis", "Kostas Kolomvatsos"],
+    "venue": "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)",
+    "year": 2023,
+    "type": "conference",
+    "featured": true,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{albanis2023noise,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Thermos, Spyridon and Chatzitofis, Anargyros and Kolomvatsos, Kostas},\n  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages = {4237--4247},\n  title = {Noise-in, Bias-out: Balanced and Real-time MoCap Solving},\n  year = {2023}\n}"
+  },
+  {
+    "id": "albanis-2023-ai",
+    "title": "An AI-Based System Offering Automatic DR-Enhanced AR for Indoor Scenes",
+    "authors": ["Georgios Albanis", "Vasileios Gkitsas", "Nikolaos Zioulis", "Stefanie Onsori-Wechtitsch", "Richard Whitehand", "Per Ström", "Dimitrios Zarpalas"],
+    "venue": "Springer Nature",
+    "year": 2023,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{albanis2023ai,\n  author = {Albanis, Georgios and Gkitsas, Vasileios and Zioulis, Nikolaos and Onsori-Wechtitsch, Stefanie and Whitehand, Richard and Ström, Per and Zarpalas, Dimitrios},\n  journal = {Springer Nature},\n  title = {An AI-Based System Offering Automatic DR-Enhanced AR for Indoor Scenes},\n  year = {2023}\n}"
+  },
+  {
+    "id": "chatzitofis-2023-suit",
+    "title": "Suit Up: AI MoCap",
+    "authors": ["Anargyros Chatzitofis", "Georgios Albanis", "Nikolaos Zioulis", "Spyridon Thermos"],
+    "venue": "ACM SIGGRAPH 2023 Real-Time Live!",
+    "year": 2023,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@incollection{chatzitofis2023suit,\n  author = {Chatzitofis, Anargyros and Albanis, Georgios and Zioulis, Nikolaos and Thermos, Spyridon},\n  booktitle = {ACM SIGGRAPH 2023 Real-Time Live!},\n  pages = {1--2},\n  title = {Suit Up: AI MoCap},\n  year = {2023}\n}"
+  },
+  {
+    "id": "albanis-2022-towards",
+    "title": "Towards Scalable and Real-time Markerless Motion Capture",
+    "authors": ["Georgios Albanis", "Anargyros Chatzitofis", "Spyridon Thermos", "Nikolaos Zioulis", "Kostas Kolomvatsos"],
+    "venue": "2022 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)",
+    "year": 2022,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{albanis2022towards,\n  author = {Albanis, Georgios and Chatzitofis, Anargyros and Thermos, Spyridon and Zioulis, Nikolaos and Kolomvatsos, Kostas},\n  booktitle = {2022 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)},\n  organization = {IEEE},\n  pages = {724--725},\n  title = {Towards Scalable and Real-time Markerless Motion Capture},\n  year = {2022}\n}"
+  },
+  {
+    "id": "chatzitofis-2022-low",
+    "title": "A Low-Cost & Real-Time Motion Capture System",
+    "authors": ["Anargyros Chatzitofis", "Georgios Albanis", "Nikolaos Zioulis", "Spyridon Thermos"],
+    "venue": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "year": 2022,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{chatzitofis2022low,\n  author = {Chatzitofis, Anargyros and Albanis, Georgios and Zioulis, Nikolaos and Thermos, Spyridon},\n  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages = {21453--21458},\n  title = {A low-cost \\& real-time motion capture system},\n  year = {2022}\n}"
+  },
+  {
+    "id": "zioulis-2022-hybrid",
+    "title": "Hybrid Skip: A Biologically Inspired Skip Connection for the UNet Architecture",
+    "authors": ["Nikolaos Zioulis", "Georgios Albanis", "Petros Drakoulis", "Federico Alvarez", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "IEEE Access",
+    "year": 2022,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{zioulis2022hybrid,\n  author = {Zioulis, Nikolaos and Albanis, Georgios and Drakoulis, Petros and Alvarez, Federico and Zarpalas, Dimitrios and Daras, Petros},\n  journal = {IEEE Access},\n  title = {Hybrid Skip: A Biologically Inspired Skip Connection for the UNet Architecture},\n  year = {2022}\n}"
+  },
+  {
+    "id": "konstantoudakis-2022-drone",
+    "title": "Drone Control in AR: An Intuitive System for Single-Handed Gesture Control, Drone Tracking, and Contextualized Camera Feed Visualization in Augmented Reality",
+    "authors": ["Konstantinos Konstantoudakis", "Kyriaki Christaki", "Dimitrios Tsiakmakis", "Dimitrios Sainidis", "Georgios Albanis", "Anastasios Dimou", "Petros Daras"],
+    "venue": "Drones",
+    "year": 2022,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{konstantoudakis2022drone,\n  author = {Konstantoudakis, Konstantinos and Christaki, Kyriaki and Tsiakmakis, Dimitrios and Sainidis, Dimitrios and Albanis, Georgios and Dimou, Anastasios and Daras, Petros},\n  journal = {Drones},\n  title = {Drone Control in AR: An Intuitive System for Single-Handed Gesture Control, Drone Tracking, and Contextualized Camera Feed Visualization in Augmented Reality},\n  year = {2022}\n}"
+  },
+  {
+    "id": "albanis-2021-pano3d",
+    "title": "Pano3D: A Holistic Benchmark and a Solid Baseline for 360° Depth Estimation",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Petros Drakoulis", "Vasileios Gkitsas", "Vladimiros Sterzentsenko", "Federico Alvarez", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "year": 2021,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{albanis2021pano3d,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Drakoulis, Petros and Gkitsas, Vasileios and Sterzentsenko, Vladimiros and Alvarez, Federico and Zarpalas, Dimitrios and Daras, Petros},\n  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages = {3727--3737},\n  title = {Pano3d: A holistic benchmark and a solid baseline for 360deg depth estimation},\n  year = {2021}\n}"
+  },
+  {
+    "id": "albanis-2021-benchmark",
+    "title": "A Benchmark with Decomposed Distribution Shifts for 360 Monocular Depth Estimation",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Petros Drakoulis", "Federico Alvarez", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "NeurIPS 2021 Workshop",
+    "year": 2021,
+    "type": "conference",
+    "featured": false,
+    "abstract": "In this work we contribute a distribution shift benchmark for a computer vision task; monocular depth estimation. Our differentiation is the decomposition of the wider distribution shift of uncontrolled testing on in-the-wild data, to three distinct distribution shifts.",
+    "links": {
+      "pdf": "https://browse.arxiv.org/pdf/2112.00432.pdf",
+      "project": "https://vcl3d.github.io/Pano3D/"
+    },
+    "bibtex": "@article{albanis2021benchmark,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Drakoulis, Petros and Alvarez, Federico and Zarpalas, Dimitrios and Daras, Petros},\n  journal = {arXiv preprint arXiv:2112.00432},\n  title = {A benchmark with decomposed distribution shifts for 360 monocular depth estimation},\n  year = {2021}\n}"
+  },
+  {
+    "id": "albanis-2021-end",
+    "title": "On End-to-End 6DOF Object Pose Estimation and Robustness to Object Scale",
+    "authors": ["Georgios Albanis", "Nikolaos Zioulis", "Anargyros Chatzitofis", "Anastasios Dimou", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "ML Reproducibility Challenge 2020",
+    "year": 2021,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{albanis2021end,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Chatzitofis, Anargyros and Dimou, Anastasios and Zarpalas, Dimitrios and Daras, Petros},\n  journal = {ML Reproducibility Challenge 2020},\n  title = {On End-to-End 6DOF Object Pose Estimation and Robustness to Object Scale},\n  year = {2021}\n}"
+  },
+  {
+    "id": "gkitsas-2021-panodr",
+    "title": "PanoDR: Spherical Panorama Diminished Reality for Indoor Scenes",
+    "authors": ["Vasileios Gkitsas", "Vladimiros Sterzentsenko", "Nikolaos Zioulis", "Georgios Albanis", "Dimitrios Zarpalas"],
+    "venue": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "year": 2021,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{gkitsas2021panodr,\n  author = {Gkitsas, Vasileios and Sterzentsenko, Vladimiros and Zioulis, Nikolaos and Albanis, Georgios and Zarpalas, Dimitrios},\n  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  title = {PanoDR: Spherical Panorama Diminished Reality for Indoor Scenes},\n  year = {2021}\n}"
+  },
+  {
+    "id": "chatzitofis-2021-coordinate",
+    "title": "On Coordinate Decoding for Keypoint Estimation Tasks",
+    "authors": ["Anargyros Chatzitofis", "Nikolaos Zioulis", "Georgios Albanis", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "arXiv preprint arXiv:2110.10289",
+    "year": 2021,
+    "type": "preprint",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{chatzitofis2021coordinate,\n  author = {Chatzitofis, Anargyros and Zioulis, Nikolaos and Albanis, Georgios and Zarpalas, Dimitrios and Daras, Petros},\n  journal = {arXiv preprint arXiv:2110.10289},\n  title = {On Coordinate Decoding for Keypoint Estimation Tasks},\n  year = {2021}\n}"
+  },
+  {
+    "id": "chatzitofis-2021-volume",
+    "title": "Volume-of-Interest Aware Deep Neural Networks for Rapid Chest CT-Based COVID-19 Patient Risk Assessment",
+    "authors": ["Anargyros Chatzitofis", "Pierandrea Cancian", "Vasileios Gkitsas", "Alessandro Carlucci", "Panagiotis Stalidis", "Georgios Albanis", "Antonis Karakottas", "Theodoros Semertzidis", "Petros Daras", "Caterina Giannitto", "et al."],
+    "venue": "International Journal of Environmental Research and Public Health",
+    "year": 2021,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{chatzitofis2021volume,\n  author = {Chatzitofis, Anargyros and Cancian, Pierandrea and Gkitsas, Vasileios and Carlucci, Alessandro and Stalidis, Panagiotis and Albanis, Georgios and Karakottas, Antonis and Semertzidis, Theodoros and Daras, Petros and Giannitto, Caterina and others},\n  journal = {International Journal of Environmental Research and Public Health},\n  title = {Volume-of-Interest Aware Deep Neural Networks for Rapid Chest CT-Based COVID-19 Patient Risk Assessment},\n  year = {2021}\n}"
+  },
+  {
+    "id": "whitehand-2021-towards",
+    "title": "Towards User Generated AR Experiences: Enable Consumers to Generate Their Own AR Experiences for Planning Indoor Spaces",
+    "authors": ["Richard Whitehand", "Georgios Albanis", "Nikolaos Zioulis", "Werner Bailer", "Dimitrios Zarpalas", "Petros Daras"],
+    "venue": "ACM International Conference on Interactive Media Experiences",
+    "year": 2021,
+    "type": "conference",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@inproceedings{whitehand2021towards,\n  author = {Whitehand, Richard and Albanis, Georgios and Zioulis, Nikolaos and Bailer, Werner and Zarpalas, Dimitrios and Daras, Petros},\n  booktitle = {ACM International Conference on Interactive Media Experiences},\n  title = {Towards User Generated AR Experiences: Enable Consumers to Generate Their Own AR Experiences for Planning Indoor Spaces},\n  year = {2021}\n}"
+  },
+  {
+    "id": "sainidis-2021-single",
+    "title": "Single-Handed Gesture UAV Control and Video Feed AR Visualization for First Responders",
+    "authors": ["Dimitrios Sainidis", "Dimitrios Tsiakmakis", "Konstantinos Konstantoudakis", "Georgios Albanis", "Anastasios Dimou", "Petros Daras"],
+    "venue": "",
+    "year": 2021,
+    "type": "journal",
+    "featured": false,
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{sainidis2021single,\n  author = {Sainidis, Dimitrios and Tsiakmakis, Dimitrios and Konstantoudakis, Konstantinos and Albanis, Georgios and Dimou, Anastasios and Daras, Petros},\n  title = {Single-Handed Gesture UAV Control and Video Feed AR Visualization for First Responders},\n  year = {2021}\n}"
+  }
+]
