@@ -39,19 +39,50 @@ function initNav() {
     });
   });
 
-  const sections = document.querySelectorAll('.section, .hero, .footer');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navItems.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { threshold: 0.3, rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue('--nav-height')} 0px 0px 0px` });
+  const sectionOrder = ['hero', 'about', 'publications', 'blog', 'contact'];
 
-  sections.forEach(s => { if (s.id) observer.observe(s); });
+  function updateActiveNav() {
+    const scrollY = window.scrollY;
+    const innerHeight = window.innerHeight;
+    const doc = document.documentElement;
+
+    const hasScroll = doc.scrollHeight > innerHeight + 2;
+    if (hasScroll && scrollY + innerHeight >= doc.scrollHeight - 2) {
+      navItems.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#contact');
+      });
+      return;
+    }
+
+    const navHeight = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
+      10,
+    ) || 64;
+    const readingLine = scrollY + Math.max(navHeight + 40, innerHeight * 0.35);
+
+    let currentId = 'hero';
+    for (const id of sectionOrder) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const top = el.getBoundingClientRect().top + scrollY;
+      if (top <= readingLine) {
+        currentId = id;
+      }
+    }
+
+    const navId = currentId === 'hero' ? 'about' : currentId;
+
+    navItems.forEach(a => {
+      const href = a.getAttribute('href');
+      a.classList.toggle('active', href === `#${navId}`);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  window.addEventListener('resize', updateActiveNav, { passive: true });
+  window.addEventListener('hashchange', updateActiveNav);
+  window.addEventListener('load', updateActiveNav);
+  updateActiveNav();
 }
 
 // ============================================
