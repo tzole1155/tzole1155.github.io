@@ -1,9 +1,36 @@
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') {
+    gtag('event', name, params || {});
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initScrollReveal();
+  initOutboundTracking();
   initPublications();
   initBlogTeaser();
 });
+
+// ============================================
+// ANALYTICS (GA4)
+// ============================================
+
+function initOutboundTracking() {
+  document.body.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="http"]');
+    if (!a) return;
+    try {
+      if (a.hostname === location.hostname) return;
+    } catch {
+      return;
+    }
+    trackEvent('outbound_click', {
+      link_url: a.href,
+      link_domain: a.hostname,
+    });
+  });
+}
 
 // ============================================
 // NAVIGATION
@@ -123,6 +150,7 @@ async function initPublications() {
     const years = [...new Set(publicationsData.map(p => p.year))].sort((a, b) => b - a);
     renderFilters(filterContainer, years);
     renderPublications(container, publicationsData);
+    bindPublicationsAnalytics();
   } catch (e) {
     container.innerHTML = '<p style="color: var(--text-muted);">Failed to load publications.</p>';
   }
@@ -144,6 +172,7 @@ function renderFilters(container, years) {
         ? publicationsData
         : publicationsData.filter(p => p.year === parseInt(filter));
       renderPublications(document.getElementById('publications-list'), filtered);
+      trackEvent('publications_filter', { filter_value: String(filter) });
     });
   });
 }
@@ -157,13 +186,13 @@ function renderPublications(container, pubs) {
     ).join(', ');
 
     const links = [];
-    if (pub.links?.pdf) links.push(`<a href="${pub.links.pdf}" target="_blank" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>`);
-    if (pub.links?.project) links.push(`<a href="${pub.links.project}" target="_blank" class="pub-link"><i class="fas fa-globe"></i> Project</a>`);
-    if (pub.links?.doi) links.push(`<a href="https://doi.org/${pub.links.doi}" target="_blank" class="pub-link"><i class="fas fa-link"></i> DOI</a>`);
-    if (pub.bibtex) links.push(`<button class="pub-link" onclick="showBibtex('${pub.id}')"><i class="fas fa-quote-right"></i> BibTeX</button>`);
+    if (pub.links?.pdf) links.push(`<a href="${pub.links.pdf}" target="_blank" rel="noopener" class="pub-link" data-link-type="pdf"><i class="fas fa-file-pdf"></i> PDF</a>`);
+    if (pub.links?.project) links.push(`<a href="${pub.links.project}" target="_blank" rel="noopener" class="pub-link" data-link-type="project"><i class="fas fa-globe"></i> Project</a>`);
+    if (pub.links?.doi) links.push(`<a href="https://doi.org/${pub.links.doi}" target="_blank" rel="noopener" class="pub-link" data-link-type="doi"><i class="fas fa-link"></i> DOI</a>`);
+    if (pub.bibtex) links.push(`<button type="button" class="pub-link" onclick="showBibtex('${pub.id}')"><i class="fas fa-quote-right"></i> BibTeX</button>`);
 
     return `
-      <div class="pub-card${pub.featured ? ' pub-featured' : ''}" style="animation-delay: ${i * 0.05}s">
+      <div class="pub-card${pub.featured ? ' pub-featured' : ''}" data-pub-id="${pub.id}" style="animation-delay: ${i * 0.05}s">
         <div class="pub-card-header">
           <span class="pub-type ${pub.type}">${pub.type}</span>
           <span class="pub-title">${pub.title}</span>
@@ -176,9 +205,26 @@ function renderPublications(container, pubs) {
   }).join('');
 }
 
+function bindPublicationsAnalytics() {
+  const list = document.getElementById('publications-list');
+  if (!list || list.dataset.analyticsBound === '1') return;
+  list.dataset.analyticsBound = '1';
+  list.addEventListener('click', (e) => {
+    const a = e.target.closest('a.pub-link[data-link-type]');
+    if (!a) return;
+    const card = a.closest('.pub-card');
+    trackEvent('publication_link_click', {
+      publication_id: card?.dataset.pubId || '',
+      link_type: a.dataset.linkType || '',
+    });
+  });
+}
+
 function showBibtex(id) {
   const pub = publicationsData.find(p => p.id === id);
   if (!pub?.bibtex) return;
+
+  trackEvent('bibtex_open', { publication_id: id });
 
   const modal = document.getElementById('bibtex-modal');
   document.getElementById('bibtex-text').textContent = pub.bibtex;
@@ -186,6 +232,7 @@ function showBibtex(id) {
 
   document.getElementById('bibtex-copy-btn').onclick = () => {
     navigator.clipboard.writeText(pub.bibtex).then(() => {
+      trackEvent('bibtex_copy', { publication_id: id });
       const btn = document.getElementById('bibtex-copy-btn');
       btn.textContent = 'Copied!';
       setTimeout(() => btn.textContent = 'Copy to clipboard', 2000);
@@ -278,6 +325,7 @@ async function initBlogListing() {
 
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     container.innerHTML = posts.map(post => blogCardHTML(post)).join('');
+    trackEvent('blog_list_view', { post_count: posts.length });
   } catch {
     container.innerHTML = '<p style="color: var(--text-muted);">Failed to load posts.</p>';
   }
@@ -335,6 +383,11 @@ async function initBlogViewer() {
     } else {
       bodyEl.innerHTML = md.replace(/\n/g, '<br>');
     }
+
+    trackEvent('blog_post_view', {
+      post_slug: slug,
+      post_title: meta?.title || slug,
+    });
   } catch {
     bodyEl.innerHTML = '<p style="color: var(--text-muted);">Could not load this post.</p>';
   }
