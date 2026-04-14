@@ -171,7 +171,7 @@
     "featured": false,
     "abstract": "In this work we contribute a distribution shift benchmark for a computer vision task; monocular depth estimation. Our differentiation is the decomposition of the wider distribution shift of uncontrolled testing on in-the-wild data, to three distinct distribution shifts.",
     "links": {
-      "pdf": "https://browse.arxiv.org/pdf/2112.00432.pdf",
+      "pdf": "https://arxiv.org/pdf/2112.00432.pdf",
       "project": "https://vcl3d.github.io/Pano3D/"
     },
     "bibtex": "@article{albanis2021benchmark,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Drakoulis, Petros and Alvarez, Federico and Zarpalas, Dimitrios and Daras, Petros},\n  journal = {arXiv preprint arXiv:2112.00432},\n  title = {A benchmark with decomposed distribution shifts for 360 monocular depth estimation},\n  year = {2021}\n}"
