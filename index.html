@@ -85,7 +85,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="css/style.css">
   <script type="importmap">
-    { "imports": { "three": "https://esm.sh/three@0.170.0", "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/" } }
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.170.0",
+        "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/",
+        "gvrm": "https://esm.sh/@naruya/gaussian-vrm@1.0.2?external=three"
+      }
+    }
   </script>
 </head>
 
@@ -284,7 +290,7 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
   <script type="module" src="js/hero3d.js"></script>
 </body>
 

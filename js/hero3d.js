@@ -1,15 +1,19 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GVRM } from 'gvrm';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 const canvas = document.getElementById('hero-canvas');
 const container = document.getElementById('hero-viewer');
 const loader_el = document.getElementById('hero-viewer-loader');
+const fbxPath = 'assets/Idle.fbx';
 
 if (canvas && container) {
   const scene = new THREE.Scene();
+  scene.background = null;
 
-  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, 1, 4);
+  const camera = new THREE.PerspectiveCamera(65, 1, 0.01, 100);
+  camera.position.set(0, 0.6, 1.6);
+  camera.lookAt(0, 0.2, 0);
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -36,50 +40,67 @@ if (canvas && container) {
   rimLight.position.set(0, 3, -4);
   scene.add(rimLight);
 
-  let mixer = null;
-  const clock = new THREE.Clock();
+  let gvrm = null;
+  const fbxLoader = new FBXLoader();
 
-  const gltfLoader = new GLTFLoader();
-  gltfLoader.load(
-    'data/ga.glb',
-    (gltf) => {
-      const model = gltf.scene;
+  async function debugFbx(fbxUrl) {
+    try {
+      const fbxScene = await fbxLoader.loadAsync(fbxUrl);
+      const clips = fbxScene.animations || [];
+      const skeletonBones = [];
 
-      const box0 = new THREE.Box3().setFromObject(model);
-      const size0 = box0.getSize(new THREE.Vector3());
-      const maxDim = Math.max(size0.x, size0.y, size0.z);
-      const scale = 2.5 / maxDim;
-      model.scale.setScalar(scale);
-      model.rotation.y = Math.PI / 2;
+      fbxScene.traverse((node) => {
+        if (node.isBone) skeletonBones.push(node.name);
+      });
 
-      const box = new THREE.Box3().setFromObject(model);
-      const size = box.getSize(new THREE.Vector3());
-      const center = box.getCenter(new THREE.Vector3());
+      console.info(`[FBX debug] file: ${fbxUrl}`);
+      console.info(`[FBX debug] clips: ${clips.length}`);
+      clips.forEach((clip, idx) => {
+        const trackNames = clip.tracks.map((t) => t.name);
+        console.info(`[FBX debug] clip ${idx}: "${clip.name}" tracks=${clip.tracks.length}`);
+        console.info(`[FBX debug] clip ${idx} first tracks:`, trackNames.slice(0, 300));
+      });
+      console.info(`[FBX debug] bone count: ${skeletonBones.length}`);
+      console.info('[FBX debug] first bones:', skeletonBones.slice(0, 25));
+    } catch (error) {
+      console.error(`[FBX debug] failed to parse ${fbxUrl}`, error);
+    }
+  }
 
-      model.position.set(center.x + 0.5, -box.min.y, -center.z);
-
-      scene.add(model);
-
-      const lookY = size.y * 0.45;
-      camera.position.set(0, size.y * 0.5, 3.5);
-      camera.lookAt(0, lookY, 0);
-
-      if (gltf.animations && gltf.animations.length > 0) {
-        mixer = new THREE.AnimationMixer(model);
-        const clip = gltf.animations[0];
-        const action = mixer.clipAction(clip);
-        action.play();
+  async function initGvrm() {
+    const originalWarn = console.warn;
+    // Suppress a known upstream deprecation warning from three-vrm internals.
+    console.warn = (...args) => {
+      const message = args[0];
+      if (
+        typeof message === 'string' &&
+        message.includes('VRMUtils.removeUnnecessaryJoints')
+      ) {
+        return;
       }
+      originalWarn(...args);
+    };
 
+    try {
+      gvrm = await GVRM.load('assets/ga.gvrm', scene, camera, renderer);
       if (loader_el) loader_el.classList.add('hidden');
-    },
-    undefined,
-    (err) => {
-      console.warn('GLB load failed:', err);
+
+      // Keep avatar visible even when an external FBX fails to retarget.
+      try {
+        await debugFbx(fbxPath);
+        await gvrm.changeFBX(fbxPath);
+      } catch (animErr) {
+        console.warn('FBX animation load failed, showing static avatar:', animErr);
+      }
+    } catch (err) {
+      console.warn('GVRM load failed:', err);
       if (loader_el) loader_el.classList.add('hidden');
       if (container) container.style.display = 'none';
+    } finally {
+      console.warn = originalWarn;
     }
-  );
+  }
+  initGvrm();
 
   function resize() {
     const rect = container.getBoundingClientRect();
@@ -94,16 +115,8 @@ if (canvas && container) {
   resizeObserver.observe(container);
   resize();
 
-  let slowSpin = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    const delta = clock.getDelta();
-    if (mixer) mixer.update(delta);
-
-    slowSpin += delta * 0.15;
-    scene.rotation.y = Math.sin(slowSpin) * 0.3;
-
+  renderer.setAnimationLoop(() => {
+    if (gvrm) gvrm.update();
     renderer.render(scene, camera);
-  }
-  animate();
+  });
 }
