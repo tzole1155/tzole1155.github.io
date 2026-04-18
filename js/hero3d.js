@@ -12,44 +12,29 @@ const hint_el = document.getElementById('hero-viewer-hint');
 
 if (canvas && container) {
   const scene = new THREE.Scene();
-  scene.background = null;
+  scene.background = new THREE.Color(0x000000);
 
   const camera = new THREE.PerspectiveCamera(65, 1, 0.01, 100);
-  camera.position.set(0, 0.6, 1.6);
+  camera.position.set(0, 0.8, 1.75);
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: true,
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.95;
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.setPixelRatio(1);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 0.2, 0);
+  controls.screenSpacePanning = true;
+  controls.target.set(0, 0, 0);
   controls.enableDamping = true;
-  controls.dampingFactor = 0.06;
-  controls.minDistance = 0.8;
-  controls.maxDistance = 4;
-  controls.maxPolarAngle = Math.PI * 0.55;
+  controls.dampingFactor = 0.05;
+  controls.minDistance = 0.1;
+  controls.maxDistance = 1000;
   controls.update();
 
-  const ambientLight = new THREE.AmbientLight(0x404050, 0.8);
-  scene.add(ambientLight);
-
-  const keyLight = new THREE.DirectionalLight(0xeee8dd, 1.4);
-  keyLight.position.set(3, 4, 2);
-  scene.add(keyLight);
-
-  const fillLight = new THREE.DirectionalLight(0x4466aa, 0.5);
-  fillLight.position.set(-3, 2, -1);
-  scene.add(fillLight);
-
-  const rimLight = new THREE.DirectionalLight(0xf59e0b, 0.6);
-  rimLight.position.set(0, 3, -4);
-  scene.add(rimLight);
+  const light = new THREE.DirectionalLight(0xffffff, Math.PI);
+  light.position.set(10, 10, 10);
+  scene.add(light);
 
   let gvrm = null;
 
