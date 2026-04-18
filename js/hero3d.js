@@ -1,11 +1,14 @@
 import * as THREE from 'three';
 import { GVRM } from 'gvrm';
-import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const IDLE_FBX = 'assets/Idle.fbx';
+const GVRM_PATH = 'assets/ga.gvrm';
 
 const canvas = document.getElementById('hero-canvas');
 const container = document.getElementById('hero-viewer');
 const loader_el = document.getElementById('hero-viewer-loader');
-const fbxPath = 'assets/Idle.fbx';
+const hint_el = document.getElementById('hero-viewer-hint');
 
 if (canvas && container) {
   const scene = new THREE.Scene();
@@ -13,7 +16,6 @@ if (canvas && container) {
 
   const camera = new THREE.PerspectiveCamera(65, 1, 0.01, 100);
   camera.position.set(0, 0.6, 1.6);
-  camera.lookAt(0, 0.2, 0);
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -24,6 +26,15 @@ if (canvas && container) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 0.2, 0);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+  controls.minDistance = 0.8;
+  controls.maxDistance = 4;
+  controls.maxPolarAngle = Math.PI * 0.55;
+  controls.update();
 
   const ambientLight = new THREE.AmbientLight(0x404050, 0.8);
   scene.add(ambientLight);
@@ -41,35 +52,17 @@ if (canvas && container) {
   scene.add(rimLight);
 
   let gvrm = null;
-  const fbxLoader = new FBXLoader();
 
-  async function debugFbx(fbxUrl) {
-    try {
-      const fbxScene = await fbxLoader.loadAsync(fbxUrl);
-      const clips = fbxScene.animations || [];
-      const skeletonBones = [];
-
-      fbxScene.traverse((node) => {
-        if (node.isBone) skeletonBones.push(node.name);
-      });
-
-      console.info(`[FBX debug] file: ${fbxUrl}`);
-      console.info(`[FBX debug] clips: ${clips.length}`);
-      clips.forEach((clip, idx) => {
-        const trackNames = clip.tracks.map((t) => t.name);
-        console.info(`[FBX debug] clip ${idx}: "${clip.name}" tracks=${clip.tracks.length}`);
-        console.info(`[FBX debug] clip ${idx} first tracks:`, trackNames.slice(0, 300));
-      });
-      console.info(`[FBX debug] bone count: ${skeletonBones.length}`);
-      console.info('[FBX debug] first bones:', skeletonBones.slice(0, 25));
-    } catch (error) {
-      console.error(`[FBX debug] failed to parse ${fbxUrl}`, error);
+  function dismissCameraHint() {
+    if (hint_el && !hint_el.classList.contains('is-dismissed')) {
+      hint_el.classList.add('is-dismissed');
     }
   }
 
+  controls.addEventListener('start', dismissCameraHint);
+
   async function initGvrm() {
     const originalWarn = console.warn;
-    // Suppress a known upstream deprecation warning from three-vrm internals.
     console.warn = (...args) => {
       const message = args[0];
       if (
@@ -82,13 +75,11 @@ if (canvas && container) {
     };
 
     try {
-      gvrm = await GVRM.load('assets/ga.gvrm', scene, camera, renderer);
+      gvrm = await GVRM.load(GVRM_PATH, scene, camera, renderer);
       if (loader_el) loader_el.classList.add('hidden');
 
-      // Keep avatar visible even when an external FBX fails to retarget.
       try {
-        await debugFbx(fbxPath);
-        await gvrm.changeFBX(fbxPath);
+        await gvrm.changeFBX(IDLE_FBX);
       } catch (animErr) {
         console.warn('FBX animation load failed, showing static avatar:', animErr);
       }
@@ -117,6 +108,7 @@ if (canvas && container) {
 
   renderer.setAnimationLoop(() => {
     if (gvrm) gvrm.update();
+    controls.update();
     renderer.render(scene, camera);
   });
 }
