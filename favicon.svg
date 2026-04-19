@@ -1,3 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" role="img" aria-label="Site icon">
-  <image width="32" height="32" xlink:href="favicon-32.png" href="favicon-32.png" preserveAspectRatio="xMidYMid slice"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Body tracking icon">
+  <rect width="64" height="64" rx="16" fill="#05070b"/>
+  <g fill="none" stroke="#f5f7fb" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
+    <circle cx="32" cy="14" r="5.5" fill="#f5f7fb" stroke="none"/>
+    <path d="M32 20v12"/>
+    <path d="M22 28l10 4 10-4"/>
+    <path d="M32 32l-7 11"/>
+    <path d="M32 32l7 11"/>
+    <path d="M25 43l-4 11"/>
+    <path d="M39 43l4 11"/>
+    <path d="M17 19c2-3 5-5 8-6"/>
+    <path d="M47 19c-2-3-5-5-8-6"/>
+    <path d="M14 33c-1-4 0-8 2-11"/>
+    <path d="M50 33c1-4 0-8-2-11"/>
+    <path d="M18 49c-3-2-5-5-6-8"/>
+    <path d="M46 49c3-2 5-5 6-8"/>
+  </g>
+  <g fill="#78dce8">
+    <circle cx="32" cy="26" r="2.5"/>
+    <circle cx="22" cy="28" r="2.5"/>
+    <circle cx="42" cy="28" r="2.5"/>
+    <circle cx="25" cy="43" r="2.5"/>
+    <circle cx="39" cy="43" r="2.5"/>
+  </g>
 </svg>
