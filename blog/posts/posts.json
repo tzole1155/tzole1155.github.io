@@ -1,16 +1,9 @@
 [
   {
-    "slug": "hello-lorem",
-    "title": "Hello from the blog",
-    "date": "2026-03-28",
-    "excerpt": "A short dummy post to verify Markdown, the listing page, and the viewer.",
-    "tags": ["demo", "test"]
-  },
-  {
-    "slug": "phd-defense",
-    "title": "PhD Defense Presentation",
+    "slug": "phd-thesis",
+    "title": "PhD Thesis",
     "date": "2026-03-31",
-    "excerpt": "Nothing Happens Until Something Moves.",
-    "tags": ["PhD Defense", "Presentation"]
+    "excerpt": "A brief overview of my PhD thesis.",
+    "tags": ["PhD Thesis", "Presentation"]
   }
 ]
