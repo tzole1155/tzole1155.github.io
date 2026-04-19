@@ -54,6 +54,10 @@ body {
   overflow-x: hidden;
 }
 
+body.site-loading {
+  overflow: hidden;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
@@ -76,8 +80,53 @@ img {
 }
 
 /* ============================================
+   SITE LOADER
+============================================ */
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, rgba(70, 161, 255, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.98), rgba(7, 7, 10, 1));
+  z-index: 2000;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.site-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.site-loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 32px;
+}
+
+.site-loader-spinner {
+  width: 52px;
+  height: 52px;
+  border-width: 4px;
+}
+
+.site-loader-text {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================
    NAVIGATION
-   ============================================ */
+============================================ */
 
 .nav {
   position: fixed;

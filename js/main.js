@@ -4,6 +4,8 @@ function trackEvent(name, params) {
   }
 }
 
+initSiteLoader();
+
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initScrollReveal();
@@ -11,6 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initPublications();
   initBlogTeaser();
 });
+
+function initSiteLoader() {
+  const loader = document.getElementById('site-loader');
+  const viewer = document.getElementById('hero-viewer');
+  if (!loader || !viewer) return;
+
+  document.body.classList.add('site-loading');
+
+  let finished = false;
+
+  function hideLoader() {
+    if (finished) return;
+    finished = true;
+    loader.classList.add('hidden');
+    document.body.classList.remove('site-loading');
+  }
+
+  window.addEventListener('gvrm-ready', hideLoader, { once: true });
+  window.addEventListener('gvrm-failed', hideLoader, { once: true });
+  window.setTimeout(hideLoader, 15000);
+}
 
 // ============================================
 // ANALYTICS (GA4)

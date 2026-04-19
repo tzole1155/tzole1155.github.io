@@ -62,6 +62,7 @@ if (canvas && container) {
     try {
       gvrm = await GVRM.load(GVRM_PATH, scene, camera, renderer);
       if (loader_el) loader_el.classList.add('hidden');
+      window.dispatchEvent(new Event('gvrm-ready'));
 
       try {
         await gvrm.changeFBX(IDLE_FBX);
@@ -72,6 +73,7 @@ if (canvas && container) {
       console.warn('GVRM load failed:', err);
       if (loader_el) loader_el.classList.add('hidden');
       if (container) container.style.display = 'none';
+      window.dispatchEvent(new Event('gvrm-failed'));
     } finally {
       console.warn = originalWarn;
     }
