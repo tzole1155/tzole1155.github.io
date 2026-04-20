@@ -441,6 +441,7 @@ async function hydrateRerunEmbeds(root) {
 
   await Promise.all(Array.from(embeds, async embed => {
     const url = embed.dataset.rerunViewerUrl;
+    const blueprintUrl = embed.dataset.rerunBlueprintUrl || '';
     const height = Number(embed.dataset.rerunViewerHeight || '640');
     const caption = embed.dataset.rerunCaption || '';
     const reference = embed.dataset.rerunReference || '';
@@ -451,11 +452,20 @@ async function hydrateRerunEmbeds(root) {
 
     frame.style.minHeight = `${height}px`;
 
+    const embedConfig = {
+      url,
+      blueprintUrl,
+      width: '100%',
+      height: `${height}px`,
+    };
+
     try {
       const viewer = new WebViewer();
-      await viewer.start(url, frame, {
-        width: '100%',
-        height: `${height}px`,
+      // Keep blueprint metadata available here so we can route it through the
+      // viewer once we settle on the exact Rerun app/API integration.
+      await viewer.start([embedConfig.url, embedConfig.blueprintUrl], frame, {
+        width: embedConfig.width,
+        height: embedConfig.height,
       });
 
       if (caption || reference) {
