@@ -401,17 +401,79 @@ async function initBlogViewer() {
       md = md.slice(frontMatterMatch[0].length).trim();
     }
 
-    if (typeof marked !== 'undefined') {
-      bodyEl.innerHTML = marked.parse(md);
-    } else {
-      bodyEl.innerHTML = md.replace(/\n/g, '<br>');
-    }
+      if (typeof marked !== 'undefined') {
+        bodyEl.innerHTML = marked.parse(md);
+      } else {
+        bodyEl.innerHTML = md.replace(/\n/g, '<br>');
+      }
 
-    trackEvent('blog_post_view', {
-      post_slug: slug,
-      post_title: meta?.title || slug,
-    });
+      await hydrateRerunEmbeds(bodyEl);
+
+      trackEvent('blog_post_view', {
+        post_slug: slug,
+        post_title: meta?.title || slug,
+      });
   } catch {
     bodyEl.innerHTML = '<p style="color: var(--text-muted);">Could not load this post.</p>';
   }
+}
+
+async function hydrateRerunEmbeds(root) {
+  const embeds = root.querySelectorAll('[data-rerun-viewer-url]');
+  if (!embeds.length) return;
+
+  let WebViewer;
+  try {
+    ({ WebViewer } = await import('https://esm.sh/@rerun-io/web-viewer@0.23.2'));
+  } catch (error) {
+    console.error('Failed to load Rerun web viewer module:', error);
+    embeds.forEach(embed => {
+      const frame = embed.querySelector('.post-embed-frame');
+      if (!frame) return;
+      frame.innerHTML = `
+        <div class="post-embed-empty">
+          The Rerun viewer could not be loaded right now.
+        </div>
+      `;
+    });
+    return;
+  }
+
+  await Promise.all(Array.from(embeds, async embed => {
+    const url = embed.dataset.rerunViewerUrl;
+    const height = Number(embed.dataset.rerunViewerHeight || '640');
+    const caption = embed.dataset.rerunCaption || '';
+    const reference = embed.dataset.rerunReference || '';
+    const referenceLabel = embed.dataset.rerunReferenceLabel || 'Reference';
+    const frame = embed.querySelector('.post-embed-frame');
+
+    if (!url || !frame) return;
+
+    frame.style.minHeight = `${height}px`;
+
+    try {
+      const viewer = new WebViewer();
+      await viewer.start(url, frame, {
+        width: '100%',
+        height: `${height}px`,
+      });
+
+      if (caption || reference) {
+        const captionEl = document.createElement('div');
+        captionEl.className = 'post-embed-caption';
+        captionEl.innerHTML = `
+          <span>${caption}</span>
+          ${reference ? `<a href="${reference}" target="_blank" rel="noopener">${referenceLabel}</a>` : ''}
+        `;
+        embed.appendChild(captionEl);
+      }
+    } catch (error) {
+      console.error('Failed to initialize Rerun viewer:', error);
+      frame.innerHTML = `
+        <div class="post-embed-empty">
+          The Rerun viewer could not be initialized for this post.
+        </div>
+      `;
+    }
+  }));
 }
