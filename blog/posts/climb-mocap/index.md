@@ -27,7 +27,7 @@ You should be able to orbit, pan, zoom, and inspect the scene directly in the bl
 
 <div
   class="post-embed-card"
-  data-rerun-viewer-url="https://app.rerun.io/?url=https%3A%2F%2Fstorage.googleapis.com%2Fftpmoverse%2Fpublic%2Frerun%2Fom%2Fmg_squat.rrd"
+  data-rerun-viewer-url="https://storage.googleapis.com/ftpmoverse/public/rerun/parkour/climb.rrd"
   data-rerun-viewer-height="640"
   data-rerun-caption="Interactive DNA example rendered with the Rerun web viewer."
   data-rerun-reference="https://github.com/rerun-io/webpage_example/blob/main/docs/index.html"

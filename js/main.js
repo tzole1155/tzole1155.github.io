@@ -424,7 +424,7 @@ async function hydrateRerunEmbeds(root) {
 
   let WebViewer;
   try {
-    ({ WebViewer } = await import('https://esm.sh/@rerun-io/web-viewer@0.23.2'));
+    ({ WebViewer } = await import('https://esm.sh/@rerun-io/web-viewer@0.24.0'));
   } catch (error) {
     console.error('Failed to load Rerun web viewer module:', error);
     embeds.forEach(embed => {
