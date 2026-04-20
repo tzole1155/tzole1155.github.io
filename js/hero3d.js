@@ -15,7 +15,7 @@ if (canvas && container) {
   scene.background = new THREE.Color(0x000000);
 
   const camera = new THREE.PerspectiveCamera(65, 1, 0.01, 100);
-  camera.position.set(0, 0.8, 1.75);
+  camera.position.set(1.235, -0.144, 0.972);
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -25,7 +25,7 @@ if (canvas && container) {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.screenSpacePanning = true;
-  controls.target.set(0, 0, 0);
+  controls.target.set(0.061, -0.024, -0.051);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.minDistance = 0.1;
@@ -38,6 +38,16 @@ if (canvas && container) {
 
   let gvrm = null;
 
+  // Temporary camera debug helper. Uncomment the listener/log lines below to inspect framing.
+  function logCameraState(label) {
+    const pos = camera.position;
+    const target = controls.target;
+    console.log(
+      `[hero3d] ${label} camera=(${pos.x.toFixed(3)}, ${pos.y.toFixed(3)}, ${pos.z.toFixed(3)}) ` +
+      `target=(${target.x.toFixed(3)}, ${target.y.toFixed(3)}, ${target.z.toFixed(3)})`
+    );
+  }
+
   function dismissCameraHint() {
     if (hint_el && !hint_el.classList.contains('is-dismissed')) {
       hint_el.classList.add('is-dismissed');
@@ -45,6 +55,8 @@ if (canvas && container) {
   }
 
   controls.addEventListener('start', dismissCameraHint);
+  // controls.addEventListener('end', () => logCameraState('controls:end'));
+  // logCameraState('initial');
 
   async function initGvrm() {
     const originalWarn = console.warn;
