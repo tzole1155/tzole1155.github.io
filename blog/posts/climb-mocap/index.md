@@ -2,59 +2,43 @@
 Can you MoCap a parkour video?
 ---
 
-Last week a parkour clip from [shaneparkour](https://www.instagram.com/shaneparkour/?hl=en) showed up in my feed — a wall climb, one handheld phone, the kind of shot you scroll past and then scroll back to. If you haven't fallen into his videos yet, fair warning: he has a huge library and the motions get progressively more unreasonable.
-I got curious. Could we actually digitize this? One moving camera, a subject doing something genuinely hard, no markers, no mocap suit, no studio. The honest version of the question is the one I actually care about: if we can, is the result something an animator would touch? Or is cleaning up imperfect MoCap still more work than keyframing from scratch?
-I don't know the answer. That's kind of why I'm writing this.
+Last week a parkour clip from [shaneparkour](https://www.instagram.com/shaneparkour/?hl=en) showed up in my feed and got my attention — an impressive wall climb, captured by a single moving handheld phone.
 
-## Why this clip is a nightmare
-A parkour wall climb from a handheld phone hits almost every failure mode markerless MoCap has:
+Working in the field of human digitisation and motion capture, a natural question for me is: could we actually digitise this? One moving camera, an actor doing something genuinely hard, no markers, no mocap suit, no studio, random lighting conditions. And if we can, would the result be of sufficient quality for downstream applications — for instance, good enough that an animator would prefer to clean it up rather than keyframe from scratch?
 
-- The camera is moving too. You can't lean on a static background to solve camera pose — the solver has to figure out where the camera is and where the person is, simultaneously, with nothing locked down.
-- Heavy self-occlusion at contact. When the body folds against the wall, limbs disappear behind the torso, behind the wall itself, behind each other.
-- Fast motion. Motion blur eats fine detail on arms and legs exactly when you need it most — mid-push, mid-rotation.
-- Contact matters. A climb that doesn't look like it's actually touching the wall looks wrong instantly. Foot slide on the ground is forgiving; hand slide on a vertical surface is not.
+Before answering that, let's look at why this is so hard.
 
-Any one of these is hard. Together, they're the kind of shot that would normally get a "shoot it in a volume" answer.
+## Why this clip is challenging
+
+A parkour wall climb from a handheld phone is one of the most demanding motions to digitise:
+
+- Beyond the single-camera constraint, the camera itself is moving — so we need to account for that in the actual motion solving.
+- Heavy self-occlusions. The challenging motion means many body parts are not visible to the camera, and contact with the wall aggravates this further.
+- Fast motion captured at phone-level FPS. This produces intense motion blur, which degrades the quality of the AI models involved.
 
 ## The pipeline
-Broadly, the stages are what you'd expect for monocular human motion from video: [person detection and tracking → 2D pose estimation → lifting to 3D in a canonical space → camera pose / scene solve → temporal smoothing and contact-aware refinement → retargeting to a skeleton]. Some of it is off-the-shelf open source, some of it is Moverse's own optimization stack doing the heavy lifting on the parts that matter. End-to-end on this clip: under two minutes.
-I'll save the full write-up for another post — this one's really about the output.
+
+I'll keep this brief and save the full write-up for another post, since I want the focus here to be on the output motion. In short, we follow a two-stage approach: first we estimate the camera trajectory in the world frame using open-source tools, then we solve for the final body motion using some of our internal tools. Interestingly, this pipeline is quite fast and optimised to run on commodity-level GPUs (e.g. an NVIDIA 3060).
 
 ## The result
-Below is a Rerun viewer with the raw solve. No cleanup, no retargeting polish, no animator pass — just what came out of the pipeline.
 
-You should be able to orbit, pan, zoom, and inspect the scene directly in the blog post.
+Below is a Rerun viewer (best viewed on desktop) with the outcome. **This is the raw result — no manual intervention, no postprocessing.** On the left you can see the motion in 3D alongside the camera position, and on the right the reference video. You should be able to orbit, pan, zoom, and inspect the scene directly in the blog post.
 
 <div
   class="post-embed-card"
   data-rerun-viewer-url="https://storage.googleapis.com/ftpmoverse/public/rerun/parkour/climb.rrd"
   data-rerun-blueprint-url="https://storage.googleapis.com/ftpmoverse/public/rerun/parkour/parkour_climb.rbl"
   data-rerun-viewer-height="640"
-  data-rerun-caption="Interactive DNA example rendered with the Rerun web viewer."
-  data-rerun-reference="https://github.com/rerun-io/webpage_example/blob/main/docs/index.html"
-  data-rerun-reference-label="Reference example"
+  data-rerun-caption="Final motion and Camera Tracking. &#169; shaneparkour"
+  data-rerun-reference="https://www.instagram.com/p/DHoeOkqNwI9/?hl=en"
+  data-rerun-reference-label="Parkour climb"
 >
   <div class="post-embed-frame" aria-label="Interactive Rerun viewer"></div>
 </div>
 <br>
-A couple of things worth looking at specifically:
 
-- The wall contact moment — watch whether the hands feel planted or floaty. This is usually where single-camera solves fall apart.
-- The rotation through the climb — root orientation under fast camera motion is one of the hardest things to get right.
-- The landing / recovery — the easy part, and a useful baseline for how clean the pipeline can be when conditions are friendly.
+## What do you think?
 
-My honest read: decent. Not perfect. Feet are good, the overall shape of the motion is there, some of the finger and wrist detail at contact is clearly guessed rather than observed. For two minutes of compute on a clip that was never meant to be solved, I'll take it.
+So — a single handheld phone clip of a parkour wall climb, digitised automatically with no cleanup. The motion is there, though some artifacts remain. The real question is whether a result like this is a starting point that saves professionals time, or a cleanup job that ends up costing more than keyframing from reference.
 
-## The real question
-Here's where I actually want input from people who'd use this.
-If I handed you this as an FBX — silhouette right, timing right, rough contacts, some jitter, some limbs clearly wrong — is that a starting point that saves you time, or is it a cleanup job that costs you more time than keyframing from reference?
-I've heard both answers from animators and I don't think there's one right one. It probably depends on the shot, the style, the deadline, and how much you trust the source. But I'd love to know where your line is: what does markerless MoCap have to get right before it earns a seat in your pipeline, and what's the thing it keeps getting wrong that makes you throw it out?
-Reply, DM, whatever works. Genuinely asking.
-
-## Why this is useful
-
-- The post body stays easy to edit in Markdown.
-- The interactive viewer still works as a real JavaScript embed.
-- Later we can swap the hosted sample for one of your own `.rrd` recordings.
-
-For a production post, we can also support multiple Rerun embeds in the same article or make the viewer URL configurable from front matter.
+I'd love to hear your take on this. Feel free to reach out — I can also send you the final asset to experiment with.

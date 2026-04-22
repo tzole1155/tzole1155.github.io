@@ -5,5 +5,12 @@
     "date": "2026-03-31",
     "excerpt": "A brief overview of my PhD thesis.",
     "tags": ["PhD Thesis", "Presentation"]
+  },
+  {
+    "slug": "climb-mocap",
+    "title": "Can you MoCap a parkour video?",
+    "date": "2026-04-22",
+    "excerpt": "Whether we can use motion capture techniques on a random parkour video.",
+    "tags": ["Animation", "Rerun", "Visualization", "Demo"]
   }
 ]
