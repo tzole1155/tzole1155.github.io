@@ -2,7 +2,7 @@
 Can you MoCap a parkour video?
 ---
 
-Last week a parkour clip from [shaneparkour](https://www.instagram.com/shaneparkour/?hl=en) showed up in my feed and got my attention — an impressive wall climb, captured by a single moving handheld phone.
+Last week a parkour clip from [shaneparkour](https://www.instagram.com/shaneparkour/?hl=en) showed up in my feed and got my attention — an impressive wall climb, captured by a single moving camera (could be a drone).
 
 Working in the field of human digitisation and motion capture, a natural question for me is: could we actually digitise this? One moving camera, an actor doing something genuinely hard, no markers, no mocap suit, no studio, random lighting conditions. And if we can, would the result be of sufficient quality for downstream applications — for instance, good enough that an animator would prefer to clean it up rather than keyframe from scratch?
 
@@ -10,7 +10,7 @@ Before answering that, let's look at why this is so hard.
 
 ## Why this clip is challenging
 
-A parkour wall climb from a handheld phone is one of the most demanding motions to digitise:
+A parkour wall climb from a moving camera is one of the most demanding motions to digitise:
 
 - Beyond the single-camera constraint, the camera itself is moving — so we need to account for that in the actual motion solving.
 - Heavy self-occlusions. The challenging motion means many body parts are not visible to the camera, and contact with the wall aggravates this further.
