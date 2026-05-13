@@ -12,5 +12,12 @@
     "date": "2026-04-22",
     "excerpt": "Whether we can use motion capture techniques on a random parkour video.",
     "tags": ["Animation", "Rerun", "Visualization", "Demo"]
+  },
+  {
+    "slug": "how-to-build-digital-humans",
+    "title": "How to Build Digital Humans?",
+    "date": "2026-05-07",
+    "excerpt": "A filterable, JSON-backed paper list on controllable 3D avatar creation.",
+    "tags": ["Digital Humans", "Papers", "Reading List"]
   }
 ]

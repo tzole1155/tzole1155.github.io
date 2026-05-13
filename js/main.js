@@ -408,6 +408,7 @@ async function initBlogViewer() {
       }
 
       await hydrateRerunEmbeds(bodyEl);
+      await initPostPaperExplorer(slug);
 
       trackEvent('blog_post_view', {
         post_slug: slug,
@@ -486,4 +487,417 @@ async function hydrateRerunEmbeds(root) {
       `;
     }
   }));
+}
+
+// ============================================
+// POST PAPER EXPLORER (FILTER + IMPORT JSON)
+// ============================================
+//
+// If a blog post markdown contains:
+//   <div id="paper-explorer"></div>
+// we render an interactive, filterable paper list inside it by fetching:
+//   ./posts/<post-slug>/papers.json
+async function initPostPaperExplorer(slug) {
+  const explorer = document.getElementById('paper-explorer');
+  if (!explorer) return;
+
+  const listEl = explorer.querySelector('#paper-list') || null;
+  const resultsCountEl = explorer.querySelector('#paper-results-count') || null;
+
+  const papersJsonPath = explorer.dataset.papersJson || `./posts/${slug}/papers.json`;
+
+  let papers = [];
+  try {
+    const res = await fetch(papersJsonPath);
+    papers = await res.json();
+  } catch (e) {
+    explorer.innerHTML = `
+      <div class="blog-empty" style="padding: 30px 20px;">
+        <i class="fas fa-book"></i>
+        <p style="margin-top: 10px;">Failed to load papers from <code>${escapeHtml(papersJsonPath)}</code>.</p>
+      </div>
+    `;
+    return;
+  }
+
+  if (!Array.isArray(papers)) {
+    explorer.innerHTML = `
+      <div class="blog-empty" style="padding: 30px 20px;">
+        <i class="fas fa-book"></i>
+        <p style="margin-top: 10px;">Papers JSON must be an array.</p>
+      </div>
+    `;
+    return;
+  }
+
+  papers = papers
+    .filter(p => p && (p.title || p.id))
+    .map(normalizePaper);
+
+  const customPapers = loadCustomPapersForPost(slug).map(normalizePaper);
+  const byId = new Map();
+  [...papers, ...customPapers].forEach(p => byId.set(p.id, p));
+  papers = Array.from(byId.values()).sort((a, b) => (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title));
+  postPapersData = papers.slice();
+
+  // Shared state for filtering.
+  const state = {
+    year: 'all',
+    tags: new Set(),
+    q: ''
+  };
+
+  explorer.innerHTML = `
+    <div class="paper-explorer">
+      <div class="paper-explorer-controls">
+        <div id="paper-year-filter" class="publications-filter paper-year-filter"></div>
+        <div id="paper-tag-filter" class="publications-filter paper-tag-filter"></div>
+        <div class="paper-search-row">
+          <input id="paper-search-input" class="paper-search-input" type="search" placeholder="Search title, authors, venue, tags..." autocomplete="off" />
+          <button type="button" id="paper-search-clear" class="filter-btn">Clear</button>
+        </div>
+        <div id="paper-results-count" class="paper-results-count"></div>
+      </div>
+      <div id="paper-list" class="publications-list"></div>
+    </div>
+    <div id="paper-entry-modal" class="bibtex-modal" onclick="if(event.target===this)closePaperEntryModal()">
+      <div class="bibtex-content paper-entry-modal-content">
+        <button class="bibtex-close" onclick="closePaperEntryModal()">&times;</button>
+        <h3>Add New Entry</h3>
+        <form id="paper-entry-form" class="paper-entry-form">
+          <input name="title" class="paper-search-input" type="text" placeholder="Title *" required />
+          <input name="authors" class="paper-search-input" type="text" placeholder="Authors (comma separated)" />
+          <div class="paper-entry-grid">
+            <input name="year" class="paper-search-input" type="number" placeholder="Year" />
+            <input name="venue" class="paper-search-input" type="text" placeholder="Venue" />
+          </div>
+          <div class="paper-entry-grid">
+            <input name="type" class="paper-search-input" type="text" placeholder="Type (preprint/conference/journal)" />
+            <input name="tags" class="paper-search-input" type="text" placeholder="Tags (comma separated)" />
+          </div>
+          <input name="pdf" class="paper-search-input" type="url" placeholder="PDF URL" />
+          <input name="project" class="paper-search-input" type="url" placeholder="Project URL" />
+          <input name="doi" class="paper-search-input" type="text" placeholder="DOI (e.g. 10.48550/arXiv.1234.5678)" />
+          <textarea name="abstract" class="paper-search-input paper-entry-textarea" placeholder="Abstract"></textarea>
+          <textarea name="bibtex" class="paper-search-input paper-entry-textarea" placeholder="BibTeX"></textarea>
+          <div class="paper-entry-actions">
+            <button type="button" class="filter-btn" onclick="closePaperEntryModal()">Cancel</button>
+            <button type="submit" class="filter-btn active">Save entry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+
+  const yearFilterEl = explorer.querySelector('#paper-year-filter');
+  const tagFilterEl = explorer.querySelector('#paper-tag-filter');
+  const searchInputEl = explorer.querySelector('#paper-search-input');
+  const searchClearEl = explorer.querySelector('#paper-search-clear');
+  const paperListEl = explorer.querySelector('#paper-list');
+  const countEl = explorer.querySelector('#paper-results-count');
+  const formEl = explorer.querySelector('#paper-entry-form');
+
+  if (!yearFilterEl || !tagFilterEl || !searchInputEl || !searchClearEl || !paperListEl || !countEl || !formEl) return;
+
+  function openEntryModal() {
+    document.getElementById('paper-entry-modal')?.classList.add('active');
+  }
+
+  function rebuildFilterButtons() {
+    const years = [...new Set(papers.map(p => p.year).filter(y => typeof y === 'number' && !Number.isNaN(y)))].sort((a, b) => b - a);
+    const tags = [...new Set(papers.flatMap(p => p.tags || []).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    renderPaperFilterButtons(yearFilterEl, years, state);
+    renderTagFilterButtons(tagFilterEl, tags, state);
+    const addBtn = explorer.querySelector('#paper-add-entry-btn');
+    if (addBtn) addBtn.addEventListener('click', openEntryModal);
+  }
+  rebuildFilterButtons();
+
+  function applyFiltersAndRender() {
+    const q = state.q.trim().toLowerCase();
+
+    const filtered = papers.filter(p => {
+      if (state.year !== 'all') {
+        if (p.year !== Number(state.year)) return false;
+      }
+
+      if (state.tags.size > 0) {
+        // OR semantics: show items matching at least one selected tag.
+        const hasTag = p.tags?.some(t => state.tags.has(t));
+        if (!hasTag) return false;
+      }
+
+      if (q) {
+        const haystack = [
+          p.title,
+          (p.authors || []).join(' '),
+          p.venue || '',
+          (p.tags || []).join(' '),
+          p.abstract || '',
+        ].join(' ').toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      return true;
+    });
+
+    countEl.textContent = `${filtered.length} paper${filtered.length === 1 ? '' : 's'}`;
+    renderPaperList(paperListEl, filtered);
+  }
+
+  // Re-render whenever a filter button toggles.
+  explorer.addEventListener('paper-filters-changed', applyFiltersAndRender);
+
+  // Search
+  searchInputEl.addEventListener('input', () => {
+    state.q = searchInputEl.value || '';
+    applyFiltersAndRender();
+  });
+  searchClearEl.addEventListener('click', () => {
+    state.q = '';
+    searchInputEl.value = '';
+    applyFiltersAndRender();
+  });
+
+  formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(formEl);
+
+    const title = String(formData.get('title') || '').trim();
+    if (!title) return;
+
+    const typeInput = String(formData.get('type') || '').trim().toLowerCase();
+    const normalizedType = (typeInput === 'conference' || typeInput === 'journal' || typeInput === 'preprint') ? typeInput : 'preprint';
+
+    const paper = normalizePaper({
+      id: `${slugify(title)}-${Date.now()}`,
+      title,
+      authors: splitCommaValues(formData.get('authors')),
+      year: Number(String(formData.get('year') || '').trim()) || null,
+      venue: String(formData.get('venue') || '').trim(),
+      type: normalizedType,
+      tags: splitCommaValues(formData.get('tags')),
+      abstract: String(formData.get('abstract') || '').trim(),
+      links: {
+        pdf: String(formData.get('pdf') || '').trim(),
+        project: String(formData.get('project') || '').trim(),
+        doi: String(formData.get('doi') || '').trim(),
+      },
+      bibtex: String(formData.get('bibtex') || '').trim(),
+      custom: true,
+    });
+
+    papers.push(paper);
+    papers.sort((a, b) => (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title));
+    postPapersData = papers.slice();
+
+    saveCustomPapersForPost(slug, papers.filter(p => p.custom));
+    formEl.reset();
+    closePaperEntryModal();
+    rebuildFilterButtons();
+    applyFiltersAndRender();
+  });
+
+  // Initial render
+  applyFiltersAndRender();
+}
+
+function renderPaperFilterButtons(container, years, state) {
+  container.innerHTML = `
+    <button class="filter-btn ${state.year === 'all' ? 'active' : ''}" data-filter-year="all">All</button>
+    ${years.map(y => `<button class="filter-btn ${String(state.year) === String(y) ? 'active' : ''}" data-filter-year="${y}">${y}</button>`).join('')}
+    <button type="button" id="paper-add-entry-btn" class="filter-btn paper-add-entry-btn">
+      <i class="fas fa-plus"></i> Add New Entry
+    </button>
+  `;
+
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    if (btn.id === 'paper-add-entry-btn') return;
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.year = btn.dataset.filterYear || 'all';
+      // Note: re-render is driven by the search listener + filter buttons in initPostPaperExplorer.
+      // We dispatch a custom event so the initializer can re-render without having to close over state.
+      container.dispatchEvent(new CustomEvent('paper-filters-changed', { bubbles: true }));
+    });
+  });
+}
+
+function renderTagFilterButtons(container, tags, state) {
+  if (!tags.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = tags.map(t => {
+    return `<button type="button" class="filter-btn" data-filter-tag="${escapeHtml(t)}">${escapeHtml(t)}</button>`;
+  }).join('');
+
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    const tag = btn.dataset.filterTag || '';
+    if (state.tags.has(tag)) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.filterTag || '';
+      if (!tag) return;
+
+      if (state.tags.has(tag)) {
+        state.tags.delete(tag);
+        btn.classList.remove('active');
+      } else {
+        state.tags.add(tag);
+        btn.classList.add('active');
+      }
+      container.dispatchEvent(new CustomEvent('paper-filters-changed', { bubbles: true }));
+    });
+  });
+}
+
+function renderPaperList(container, papers) {
+  container.innerHTML = papers.map((p, i) => {
+    const authors = (p.authors || []).join(', ');
+
+    const type = p.type || 'preprint';
+    // The site CSS only defines specific colors for conference/journal/preprint.
+    const typeClass = (type === 'conference' || type === 'journal' || type === 'preprint') ? type : 'preprint';
+
+    const links = [];
+    if (p.links?.pdf) links.push(`<a href="${escapeAttr(p.links.pdf)}" target="_blank" rel="noopener" class="pub-link" data-link-type="pdf"><i class="fas fa-file-pdf"></i> PDF</a>`);
+    if (p.links?.project) links.push(`<a href="${escapeAttr(p.links.project)}" target="_blank" rel="noopener" class="pub-link" data-link-type="project"><i class="fas fa-globe"></i> Project</a>`);
+    if (p.links?.doi) links.push(`<a href="https://doi.org/${escapeAttr(p.links.doi)}" target="_blank" rel="noopener" class="pub-link" data-link-type="doi"><i class="fas fa-link"></i> DOI</a>`);
+    if (p.bibtex) links.push(`<button type="button" class="pub-link" onclick="showPostBibtex('${escapeAttr(p.id)}')"><i class="fas fa-quote-right"></i> BibTeX</button>`);
+    const tagChips = (p.tags || []).map(t => `<span class="blog-tag">${escapeHtml(t)}</span>`).join('');
+
+    return `
+      <div class="pub-card" data-paper-id="${escapeAttr(p.id)}" style="animation-delay: ${i * 0.03}s">
+        <div class="pub-card-header">
+          <span class="pub-type ${typeClass}">${escapeHtml(typeClass)}</span>
+          <span class="pub-title">${escapeHtml(p.title)}</span>
+        </div>
+        <div class="pub-authors">${escapeHtml(authors)}</div>
+        ${p.venue ? `<div class="pub-venue">${escapeHtml(p.venue)}${p.year ? ` · ${p.year}` : ''}</div>` : (p.year ? `<div class="pub-year">${p.year}</div>` : '')}
+        ${p.abstract ? `<div class="paper-abstract">${escapeHtml(p.abstract)}</div>` : ''}
+        ${tagChips ? `<div class="blog-card-tags paper-card-tags">${tagChips}</div>` : ''}
+        ${links.length ? `<div class="pub-links">${links.join('')}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+let postPapersData = [];
+
+async function showPostBibtex(paperId) {
+  // Lazily load bibtex data from the currently rendered explorer (best-effort).
+  if (!postPapersData.length) {
+    const explorer = document.getElementById('paper-explorer');
+    const slug = new URLSearchParams(window.location.search).get('post');
+    if (!explorer || !slug) return;
+    const papersJsonPath = explorer.dataset.papersJson || `./posts/${slug}/papers.json`;
+    try {
+      const res = await fetch(papersJsonPath);
+      postPapersData = await res.json();
+    } catch {
+      return;
+    }
+  }
+
+  const paper = postPapersData.find(p => String(p.id) === String(paperId)) || postPapersData.find(p => String(p.id || p.title) === String(paperId));
+  const bibtex = paper?.bibtex ? String(paper.bibtex) : '';
+  if (!bibtex) return;
+
+  const modal = document.getElementById('post-bibtex-modal');
+  const textEl = document.getElementById('post-bibtex-text');
+  if (!modal || !textEl) return;
+
+  textEl.textContent = bibtex;
+  modal.classList.add('active');
+
+  const copyBtn = document.getElementById('post-bibtex-copy-btn');
+  if (copyBtn) {
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(bibtex).then(() => {
+        const btn = document.getElementById('post-bibtex-copy-btn');
+        if (btn) {
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy to clipboard', 2000);
+        }
+      });
+    };
+  }
+}
+
+function closePostBibtex() {
+  document.getElementById('post-bibtex-modal')?.classList.remove('active');
+}
+
+function closePaperEntryModal() {
+  document.getElementById('paper-entry-modal')?.classList.remove('active');
+}
+
+function normalizePaper(p) {
+  return {
+    id: p.id || String(Math.random()).slice(2),
+    title: String(p.title || ''),
+    authors: Array.isArray(p.authors) ? p.authors.map(String) : [],
+    year: p.year != null ? Number(p.year) : null,
+    venue: p.venue ? String(p.venue) : '',
+    type: p.type ? String(p.type) : 'preprint',
+    tags: Array.isArray(p.tags) ? p.tags.map(String).filter(Boolean) : [],
+    abstract: p.abstract ? String(p.abstract) : '',
+    links: p.links && typeof p.links === 'object' ? p.links : {},
+    bibtex: p.bibtex ? String(p.bibtex) : '',
+    custom: Boolean(p.custom),
+  };
+}
+
+function splitCommaValues(value) {
+  return String(value || '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+function slugify(text) {
+  const clean = String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return clean || 'paper';
+}
+
+function getPaperStorageKey(slug) {
+  return `paper-explorer-custom:${slug}`;
+}
+
+function loadCustomPapersForPost(slug) {
+  try {
+    const raw = window.localStorage.getItem(getPaperStorageKey(slug));
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCustomPapersForPost(slug, papers) {
+  try {
+    window.localStorage.setItem(getPaperStorageKey(slug), JSON.stringify(papers));
+  } catch {
+    // Ignore storage failures (private mode/quota).
+  }
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function escapeAttr(str) {
+  // For our usage this is good enough since we always inject into attribute contexts.
+  return escapeHtml(str);
 }

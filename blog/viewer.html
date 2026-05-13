@@ -80,6 +80,16 @@
     </div>
   </footer>
 
+  <!-- Post BibTeX Modal (used by paper explorer if the post provides bibtex fields) -->
+  <div id="post-bibtex-modal" class="bibtex-modal" onclick="if(event.target===this)closePostBibtex()">
+    <div class="bibtex-content">
+      <button class="bibtex-close" onclick="closePostBibtex()">&times;</button>
+      <h3>BibTeX Citation</h3>
+      <pre><code id="post-bibtex-text"></code></pre>
+      <button id="post-bibtex-copy-btn" class="bibtex-copy">Copy to clipboard</button>
+    </div>
+  </div>
+
   <!-- Markdown parser -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
   <!-- Syntax highlighting -->

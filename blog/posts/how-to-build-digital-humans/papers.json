@@ -1,0 +1,66 @@
+[
+  {
+    "id": "zielonka2026-digital-humans",
+    "title": "How to Build Digital Humans? From Priors to Photorealistic Avatars",
+    "authors": [
+      "Wojciech Zielonka",
+      "Tobias Kirschstein",
+      "Timo Bolkart",
+      "Simon Giebenhain",
+      "Vanessa Sklyarova",
+      "Xiang Deng",
+      "Donglai Xiang",
+      "Shunsuke Saito",
+      "Yebin Liu",
+      "Matthias Niessner",
+      "Justus Thies"
+    ],
+    "year": 2026,
+    "venue": "Eurographics 2026 (State of the Art Report)",
+    "type": "preprint",
+    "tags": ["Digital Humans", "Taxonomy", "Avatars", "Priors", "Animation"],
+    "abstract": "",
+    "links": {
+      "project": "https://wojciechzielonka.com/how-to-build-digital-humans/"
+    }
+  },
+  {
+    "id": "zioulis2025-skinning-gaussian-avatars",
+    "title": "On the Skinning of Gaussian Avatars",
+    "authors": [
+      "Nikolaos Zioulis",
+      "Nikolaos Kotarelas",
+      "Georgios Albanis",
+      "Spyridon Thermos",
+      "Anargyros Chatzitofis"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2509.11411",
+    "type": "preprint",
+    "tags": ["Gaussian Avatars", "Skinning", "3D Avatars"],
+    "abstract": "Radiance field-based methods have recently been used to reconstruct human avatars, showing that we can significantly downscale the systems needed for creating animated human avatars. With Gaussian splatting overcoming the challenges of slow rendering and backward mapping, a new family of approaches has emerged. However, the linear blend skinning required for the deformation of the Gaussians does not provide valid results for their non-linear rotation properties. This work addresses such artifacts in Gaussian avatar skinning.",
+    "links": {
+      "pdf": "https://arxiv.org/pdf/2509.11411"
+    },
+    "bibtex": "@article{zioulis2025skinning,\n  author = {Zioulis, Nikolaos and Kotarelas, Nikolaos and Albanis, Georgios and Thermos, Spyridon and Chatzitofis, Anargyros},\n  journal = {arXiv preprint arXiv:2509.11411},\n  title = {On the Skinning of Gaussian Avatars},\n  year = {2025}\n}"
+  },
+  {
+    "id": "albanis2025-bias-balance",
+    "title": "From Bias to Balance: Leverage Representation Learning for Bias-Free MoCap Solving",
+    "authors": [
+      "Georgios Albanis",
+      "Nikolaos Zioulis",
+      "Spyridon Thermos",
+      "Anargyros Chatzitofis",
+      "Kostas Kolomvatsos"
+    ],
+    "year": 2025,
+    "venue": "Computer Vision and Image Understanding",
+    "type": "journal",
+    "tags": ["MoCap", "Representation Learning", "Bias", "Digital Humans"],
+    "abstract": "",
+    "links": {},
+    "bibtex": "@article{albanis2025bias,\n  author = {Albanis, Georgios and Zioulis, Nikolaos and Thermos, Spyridon and Chatzitofis, Anargyros and Kolomvatsos, Kostas},\n  journal = {Computer Vision and Image Understanding},\n  volume = {251},\n  pages = {104241},\n  title = {From Bias to Balance: Leverage Representation Learning for Bias-Free MoCap Solving},\n  year = {2025}\n}"
+  }
+]
+
