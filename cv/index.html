@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX80P387V3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LX80P387V3');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w3uyailvtl");
+  </script>
+
+  <title>CV — Georgios Albanis</title>
+  <meta name="description"
+    content="Curriculum vitae of Georgios Albanis — computer vision researcher and Moverse co-founder working on markerless motion capture and digital humans.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://tzole1155.github.io/cv/">
+
+  <meta property="og:title" content="CV — Georgios Albanis">
+  <meta property="og:description"
+    content="Curriculum vitae: markerless motion capture, digital humans, and the research behind them.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://tzole1155.github.io/cv/">
+
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/cv.css">
+</head>
+
+<body>
+
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">G<span>.</span>Albanis</a>
+      <ul class="nav-links">
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#publications">Publications</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="./" class="active">CV</a></li>
+        <li><a href="../#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <header class="cv-page-header">
+    <div class="container">
+      <a href="../" class="post-back"><i class="fas fa-arrow-left"></i> Home</a>
+      <div class="cv-toolbar">
+        <div class="cv-view-toggle" role="group" aria-label="CV detail level">
+          <button type="button" class="filter-btn" data-cv-view="condensed">Condensed</button>
+          <button type="button" class="filter-btn active" data-cv-view="full">Full</button>
+        </div>
+        <button type="button" id="cv-download" class="cv-download">
+          <i class="fas fa-file-arrow-down"></i> Download PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cv-main">
+    <div class="container">
+      <article id="cv-sheet" class="cv-sheet" aria-busy="true">
+        <div id="cv-masthead" class="cv-masthead"></div>
+        <div id="cv-body" class="cv-body">
+          <p style="color: var(--text-muted);">Loading CV…</p>
+        </div>
+      </article>
+      <p class="cv-print-hint">
+        <i class="fas fa-circle-info"></i>
+        <span><strong>Download PDF</strong> opens your browser's print dialog — choose <em>Save as PDF</em>,
+          and switch off "Headers and footers" for a clean sheet. The PDF is typeset for A4 and follows
+          the view selected above.</span>
+      </p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Georgios Albanis. All rights reserved.</span>
+        <span><a href="../">Back to home</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Markdown parser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/cv.js"></script>
+  <script>initCV();</script>
+</body>
+
+</html>

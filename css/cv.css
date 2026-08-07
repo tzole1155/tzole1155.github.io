@@ -1,0 +1,850 @@
+/* ============================================
+   CV PAGE
+   Screen styles first, print sheet at the bottom.
+   ============================================ */
+
+.cv-page-header {
+  padding: calc(var(--nav-height) + 48px) 0 0;
+  background: var(--bg-secondary);
+}
+
+.cv-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 32px;
+}
+
+.cv-view-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 24px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.cv-download:hover {
+  background: var(--accent-light);
+  border-color: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.cv-main {
+  padding: 48px 0 var(--section-padding);
+}
+
+.cv-sheet {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 56px 60px;
+}
+
+.cv-print-hint {
+  max-width: 900px;
+  margin: 24px auto 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.cv-print-hint i {
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+/* ============================================
+   MASTHEAD
+   ============================================ */
+
+.cv-masthead {
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.cv-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.cv-headline {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+  margin-top: 10px;
+}
+
+.cv-tagline {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 620px;
+  margin-top: 10px;
+}
+
+.cv-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.cv-facts span + span::before {
+  content: '·';
+  margin-right: 18px;
+  color: var(--border-light);
+}
+
+.cv-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.25s;
+}
+
+.cv-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.cv-link i {
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+/* Only useful on paper, where the label alone is a dead end. */
+.cv-link-url {
+  display: none;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.cv-section {
+  padding-top: 44px;
+}
+
+.cv-section-title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.cv-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.cv-section > p {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 1.1em;
+}
+
+.cv-section > p strong,
+.cv-entry-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.cv-body a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ============================================
+   STATS
+   ============================================ */
+
+.cv-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.cv-stat {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+
+.cv-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.cv-stat-caption {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* ============================================
+   TIMELINE ENTRIES
+   ============================================ */
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 24px;
+  padding-bottom: 32px;
+}
+
+.cv-entry:last-child {
+  padding-bottom: 0;
+}
+
+.cv-entry-rail {
+  position: relative;
+  padding-top: 3px;
+}
+
+.cv-entry-date {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+
+.cv-entry-content {
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
+  position: relative;
+}
+
+.cv-entry-content::before {
+  content: '';
+  position: absolute;
+  left: -4.5px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.cv-entry-title {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.cv-entry-org {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.cv-entry-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+.cv-entry-content ul {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.cv-entry-content li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.cv-entry-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.cv-entry-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-top: 10px;
+}
+
+/* Cards drop the rail line in favour of a contained block. */
+.cv-entry--card .cv-entry-content {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+
+.cv-entry--card .cv-entry-content::before {
+  display: none;
+}
+
+/* ============================================
+   SKILLS / CHIPS
+   ============================================ */
+
+.cv-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cv-skill-row {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.cv-skill-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cv-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cv-skill-tags .interest-tag {
+  padding: 5px 14px;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   PUBLICATIONS
+   ============================================ */
+
+.cv-pub-summary {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.cv-pub-group {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 24px;
+  padding-bottom: 28px;
+}
+
+.cv-pub-year {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.cv-pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cv-pub-title {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.cv-pub-authors {
+  display: block;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.cv-pub-authors .me {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cv-pub-venue {
+  display: block;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.cv-pub-links {
+  display: inline-flex;
+  gap: 12px;
+  margin-left: 10px;
+  font-style: normal;
+  font-size: 0.8rem;
+}
+
+.cv-empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Condensed view hides anything the markdown marked {full-only}. */
+body.cv-condensed .cv-section--full-only {
+  display: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .cv-sheet {
+    padding: 36px 26px;
+    border-radius: 16px;
+  }
+
+  .cv-entry,
+  .cv-pub-group,
+  .cv-skill-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cv-entry-content {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .cv-entry-content::before {
+    display: none;
+  }
+
+  .cv-entry-date {
+    color: var(--accent);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cv-toolbar {
+    justify-content: flex-start;
+  }
+}
+
+/* ============================================
+   PRINT SHEET (A4)
+   The custom properties are re-declared so every shared component
+   flips to ink-on-paper without needing its own print rule.
+   ============================================ */
+
+@page {
+  size: A4;
+  margin: 13mm 14mm;
+}
+
+@media print {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-elevated: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ffffff;
+    --border: #d5d5dc;
+    --border-light: #c2c2cc;
+
+    --text-primary: #111114;
+    --text-secondary: #303038;
+    --text-muted: #5c5c66;
+
+    --accent: #b45309;
+    --accent-light: #92400e;
+    --accent-dim: #ffffff;
+    --accent-glow: transparent;
+
+    --section-padding: 0;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: var(--text-primary);
+    font-size: 10.2pt;
+    line-height: 1.5;
+  }
+
+  .nav,
+  .footer,
+  .cv-page-header,
+  .cv-print-hint,
+  .site-loader,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  .cv-main {
+    padding: 0;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv-sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: #ffffff;
+  }
+
+  a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .cv-body a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* --- masthead --- */
+
+  .cv-masthead {
+    padding-bottom: 12pt;
+    margin-bottom: 0;
+    border-bottom: 1.5pt solid var(--accent);
+  }
+
+  .cv-name {
+    font-size: 24pt;
+  }
+
+  .cv-headline {
+    font-size: 10.5pt;
+    margin-top: 3pt;
+  }
+
+  .cv-tagline {
+    font-size: 9.4pt;
+    line-height: 1.45;
+    margin-top: 4pt;
+    max-width: none;
+  }
+
+  .cv-facts {
+    font-size: 7.6pt;
+    margin-top: 7pt;
+    gap: 2pt 12pt;
+  }
+
+  .cv-facts span + span::before {
+    margin-right: 12pt;
+  }
+
+  .cv-links {
+    gap: 4pt 16pt;
+    margin-top: 8pt;
+  }
+
+  .cv-link {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    font-size: 8.4pt;
+    gap: 5pt;
+    color: var(--text-secondary);
+  }
+
+  .cv-link i {
+    color: var(--accent);
+  }
+
+  /* On paper the label alone can't be followed — print the URL instead. */
+  .cv-link > span:not(.cv-link-url) {
+    display: none;
+  }
+
+  .cv-link-url {
+    display: inline;
+  }
+
+  /* --- sections --- */
+
+  .cv-section {
+    padding-top: 13pt;
+    break-inside: auto;
+  }
+
+  .cv-section-title {
+    font-size: 8.4pt;
+    letter-spacing: 0.16em;
+    margin-bottom: 9pt;
+    gap: 9pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .cv-section > p {
+    font-size: 9.6pt;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  /* --- stats --- */
+
+  .cv-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8pt;
+  }
+
+  .cv-stat {
+    border: 0.75pt solid var(--border);
+    border-radius: 5pt;
+    padding: 8pt 10pt;
+    break-inside: avoid;
+  }
+
+  .cv-stat-value {
+    font-size: 13pt;
+  }
+
+  .cv-stat-caption {
+    font-size: 7.8pt;
+    margin-top: 2pt;
+  }
+
+  /* --- entries --- */
+
+  .cv-entry,
+  .cv-pub-group,
+  .cv-skill-row {
+    grid-template-columns: 100pt 1fr;
+    gap: 12pt;
+  }
+
+  /* Long roles are allowed to run over a page break — forcing them whole
+     leaves a third of a page empty. Headings and bullets stay intact. */
+  .cv-entry {
+    padding-bottom: 12pt;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .cv-entry--card,
+  .cv-entry-content li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-entry-title,
+  .cv-entry-org,
+  .cv-entry-meta {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .cv-entry-rail {
+    padding-top: 1pt;
+  }
+
+  .cv-entry-date {
+    font-size: 8.6pt;
+  }
+
+  .cv-entry-content {
+    border-left: 0.75pt solid var(--border);
+    padding-left: 12pt;
+  }
+
+  .cv-entry-content::before {
+    left: -2.25pt;
+    top: 4pt;
+    width: 4.5pt;
+    height: 4.5pt;
+    background: var(--accent);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv-entry-title {
+    font-size: 10.4pt;
+  }
+
+  .cv-entry-org {
+    font-size: 9.6pt;
+  }
+
+  .cv-entry-meta {
+    font-size: 8.4pt;
+    margin-top: 1pt;
+  }
+
+  .cv-entry-content ul {
+    margin-top: 5pt;
+  }
+
+  .cv-entry-content li {
+    font-size: 9.2pt;
+    line-height: 1.45;
+    margin-bottom: 2.5pt;
+    padding-left: 9pt;
+  }
+
+  .cv-entry-content li::before {
+    width: 4pt;
+    top: 0.7em;
+  }
+
+  .cv-entry-content p {
+    font-size: 9.2pt;
+    line-height: 1.45;
+    margin-top: 4pt;
+  }
+
+  .cv-entry--card .cv-entry-content {
+    border: 0.75pt solid var(--border);
+    border-radius: 5pt;
+    padding: 9pt 11pt;
+  }
+
+  /* --- skills --- */
+
+  .cv-skills {
+    gap: 6pt;
+  }
+
+  .cv-skill-row {
+    break-inside: avoid;
+  }
+
+  .cv-skill-label {
+    font-size: 8.8pt;
+  }
+
+  .cv-skill-tags {
+    gap: 3pt 5pt;
+  }
+
+  .cv-skill-tags .interest-tag {
+    padding: 1.5pt 7pt;
+    font-size: 8pt;
+    border: 0.75pt solid var(--border);
+    border-radius: 20pt;
+    background: none;
+    color: var(--text-secondary);
+  }
+
+  /* --- publications --- */
+
+  .cv-pub-summary {
+    font-size: 9.4pt;
+    margin-bottom: 10pt;
+  }
+
+  .cv-pub-group {
+    padding-bottom: 10pt;
+  }
+
+  .cv-pub-year {
+    font-size: 10.5pt;
+  }
+
+  .cv-pub-list {
+    gap: 7pt;
+  }
+
+  .cv-pub {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-pub-title {
+    font-size: 9.4pt;
+    line-height: 1.35;
+  }
+
+  .cv-pub-authors,
+  .cv-pub-venue {
+    font-size: 8.4pt;
+    line-height: 1.35;
+  }
+
+  .cv-pub-links {
+    display: none;
+  }
+}
