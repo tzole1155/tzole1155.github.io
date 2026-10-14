@@ -3,7 +3,9 @@ import { GVRM } from 'gvrm';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const IDLE_FBX = 'assets/Idle.fbx';
-const GVRM_PATH = 'assets/ga.gvrm';
+// Gzipped .gvrm (STOREd zip inside, see tools/optimize_gvrm.py): the browser inflates it
+// natively, which is much faster than JSZip inflating each entry in JavaScript.
+const GVRM_PATH = 'assets/ga.gvrm.gz';
 
 const canvas = document.getElementById('hero-canvas');
 const container = document.getElementById('hero-viewer');
@@ -58,6 +60,19 @@ if (canvas && container) {
   // controls.addEventListener('end', () => logCameraState('controls:end'));
   // logCameraState('initial');
 
+  async function fetchGvrmUrl(path) {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
+    let blob = await res.blob();
+    // Some servers send .gz with Content-Encoding: gzip, so the body arrives already
+    // inflated; only decompress if it still starts with the gzip magic bytes.
+    const magic = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
+    if (magic[0] === 0x1f && magic[1] === 0x8b) {
+      blob = await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
+    }
+    return URL.createObjectURL(blob);
+  }
+
   async function initGvrm() {
     const originalWarn = console.warn;
     console.warn = (...args) => {
@@ -71,8 +86,10 @@ if (canvas && container) {
       originalWarn(...args);
     };
 
+    let gvrmUrl = null;
     try {
-      gvrm = await GVRM.load(GVRM_PATH, scene, camera, renderer);
+      gvrmUrl = await fetchGvrmUrl(GVRM_PATH);
+      gvrm = await GVRM.load(gvrmUrl, scene, camera, renderer);
       if (loader_el) loader_el.classList.add('hidden');
       window.dispatchEvent(new Event('gvrm-ready'));
 
@@ -87,10 +104,16 @@ if (canvas && container) {
       if (container) container.style.display = 'none';
       window.dispatchEvent(new Event('gvrm-failed'));
     } finally {
+      if (gvrmUrl) URL.revokeObjectURL(gvrmUrl);
       console.warn = originalWarn;
     }
   }
-  initGvrm();
+  // Defer the heavy avatar download until the rest of the page has loaded.
+  if (document.readyState === 'complete') {
+    initGvrm();
+  } else {
+    window.addEventListener('load', initGvrm, { once: true });
+  }
 
   function resize() {
     const rect = container.getBoundingClientRect();
