@@ -21,18 +21,210 @@ function initSiteLoader() {
 
   document.body.classList.add('site-loading');
 
+  const puzzle = buildLoaderPuzzle(document.getElementById('puzzle'), () => hideLoader());
+  const percentEl = document.getElementById('site-loader-percent');
+  const textEl = document.getElementById('site-loader-text');
+  const barEl = document.getElementById('site-loader-bar');
+
   let finished = false;
+  let shown = 0;
+  let stallTimer = null;
 
   function hideLoader() {
     if (finished) return;
     finished = true;
+    clearTimeout(stallTimer);
     loader.classList.add('hidden');
     document.body.classList.remove('site-loading');
   }
 
-  window.addEventListener('gvrm-ready', hideLoader, { once: true });
+  // Give up only if loading stalls, so slow connections still see the puzzle finish.
+  function armStallTimer() {
+    clearTimeout(stallTimer);
+    stallTimer = setTimeout(hideLoader, 15000);
+  }
+
+  function stageLabel(stage, detail) {
+    switch (stage) {
+      case 'download': {
+        if (!detail.total) return 'Fetching Gaussian splats…';
+        const mb = (n) => (n / 1048576).toFixed(1);
+        return `Fetching Gaussian splats · ${mb(detail.loaded || 0)} / ${mb(detail.total)} MB`;
+      }
+      case 'unpack': return 'Unpacking the avatar…';
+      case 'build': return 'Rigging the skeleton…';
+      case 'ready': return 'Ready. Say hi!';
+      default: return 'Assembling a digital human…';
+    }
+  }
+
+  function setProgress(progress, stage, detail) {
+    if (finished) return;
+    // Never move backwards (e.g. when the download estimate is corrected).
+    shown = Math.max(shown, Math.min(progress, 1));
+    const pct = Math.round(shown * 100);
+    if (percentEl) percentEl.textContent = `${pct}%`;
+    if (textEl) textEl.textContent = stageLabel(stage, detail || {});
+    if (barEl) {
+      barEl.setAttribute('aria-valuenow', String(pct));
+      barEl.firstElementChild.style.transform = `scaleX(${shown})`;
+    }
+    if (puzzle) puzzle.setProgress(shown);
+  }
+
+  window.addEventListener('gvrm-progress', (e) => {
+    armStallTimer();
+    setProgress(e.detail.progress, e.detail.stage, e.detail);
+  });
+  window.addEventListener('gvrm-ready', () => {
+    setProgress(1, 'ready');
+    // The puzzle reveals the page once its last piece lands; this is just a backstop.
+    if (puzzle) setTimeout(hideLoader, 4000);
+    else hideLoader();
+  }, { once: true });
   window.addEventListener('gvrm-failed', hideLoader, { once: true });
-  window.setTimeout(hideLoader, 15000);
+  armStallTimer();
+}
+
+// Jigsaw of a mocap skeleton; one piece snaps in per 1/N of loading progress.
+function buildLoaderPuzzle(svg, onComplete) {
+  if (!svg) return null;
+  const NS = 'http://www.w3.org/2000/svg';
+  const N = 4;
+  const SIZE = 240;
+  const CELL = SIZE / N;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Tab shape along an edge: (t along edge, n outward in cell units). Symmetric around
+  // t = 0.5, so traversing an edge in either direction draws the same curve.
+  const TAB = [
+    [0.35, 0], [0.40, 0], [0.42, 0.05], [0.38, 0.12],
+    [0.32, 0.22], [0.42, 0.28], [0.50, 0.28],
+    [0.58, 0.28], [0.68, 0.22], [0.62, 0.12],
+    [0.58, 0.05], [0.60, 0], [0.65, 0],
+  ];
+
+  // Tab direction (+1/-1) for each internal edge, in absolute coordinates.
+  const rand = () => (Math.random() < 0.5 ? -1 : 1);
+  const hEdges = Array.from({ length: N - 1 }, () => Array.from({ length: N }, rand));
+  const vEdges = Array.from({ length: N }, () => Array.from({ length: N - 1 }, rand));
+
+  function edge(ax, ay, bx, by, nx, ny) {
+    if (!nx && !ny) return ` L${bx} ${by}`;
+    const pt = ([t, n]) => {
+      const x = ax + (bx - ax) * t + nx * n * CELL;
+      const y = ay + (by - ay) * t + ny * n * CELL;
+      return `${x.toFixed(2)} ${y.toFixed(2)}`;
+    };
+    let d = ` L${pt(TAB[0])}`;
+    for (let i = 1; i < TAB.length - 1; i += 3) {
+      d += ` C${pt(TAB[i])} ${pt(TAB[i + 1])} ${pt(TAB[i + 2])}`;
+    }
+    return `${d} L${bx} ${by}`;
+  }
+
+  function piecePath(r, c) {
+    const x0 = c * CELL, y0 = r * CELL, x1 = x0 + CELL, y1 = y0 + CELL;
+    const top = r > 0 ? hEdges[r - 1][c] : 0;
+    const right = c < N - 1 ? vEdges[r][c] : 0;
+    const bottom = r < N - 1 ? hEdges[r][c] : 0;
+    const left = c > 0 ? vEdges[r][c - 1] : 0;
+    return `M${x0} ${y0}` +
+      edge(x0, y0, x1, y0, 0, top) +
+      edge(x1, y0, x1, y1, right, 0) +
+      edge(x1, y1, x0, y1, 0, bottom) +
+      edge(x0, y1, x0, y0, left, 0) + ' Z';
+  }
+
+  const splats = [
+    [46, 60, 26, 0.10], [196, 52, 20, 0.08], [60, 186, 30, 0.07],
+    [192, 176, 24, 0.09], [26, 128, 14, 0.07], [216, 120, 18, 0.07],
+  ];
+  const grid = [];
+  for (let i = 1; i < 8; i++) {
+    grid.push(`M${i * 30} 0 V${SIZE}`, `M0 ${i * 30} H${SIZE}`);
+  }
+
+  // The picture is a still render of the hero avatar (assets/avatar-puzzle.webp,
+  // transparent, amber rim light baked in so 16 clipped copies stay cheap to draw).
+  const art = `
+    <radialGradient id="pz-bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#2a1d08"/><stop offset="0.6" stop-color="#121216"/>
+      <stop offset="1" stop-color="#0a0a0d"/>
+    </radialGradient>
+    <filter id="pz-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+    <g id="pz-art">
+      <rect width="${SIZE}" height="${SIZE}" fill="url(#pz-bg)"/>
+      <path d="${grid.join(' ')}" stroke="#ffffff" stroke-opacity="0.05" stroke-width="0.6"/>
+      <g filter="url(#pz-blur)">
+        ${splats.map(([x, y, r, o]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#46a1ff" fill-opacity="${o * 3}"/>`).join('')}
+      </g>
+      <ellipse cx="116" cy="230" rx="56" ry="7" fill="#f59e0b" fill-opacity="0.16"/>
+      <image href="assets/avatar-puzzle.webp" width="${SIZE}" height="${SIZE}"/>
+      <g stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1.2">
+        <path d="M12 12 h12 M12 12 v12 M228 12 h-12 M228 12 v12 M12 228 h12 M12 228 v-12 M228 228 h-12 M228 228 v-12"/>
+      </g>
+    </g>`;
+
+  const cells = [];
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) cells.push({ r, c, d: piecePath(r, c) });
+  }
+
+  let defs = art;
+  let slots = '';
+  let pieces = '';
+  cells.forEach(({ r, c, d }, i) => {
+    defs += `<clipPath id="pz-clip-${i}"><path d="${d}"/></clipPath>`;
+    slots += `<path class="pz-slot" d="${d}"/>`;
+    // Scatter each piece outward from the board centre, with a random spin.
+    const cx = (c + 0.5) * CELL, cy = (r + 0.5) * CELL;
+    const angle = Math.atan2(cy - SIZE / 2, cx - SIZE / 2) + (Math.random() - 0.5);
+    const dist = reduceMotion ? 0 : 60 + Math.random() * 70;
+    const spin = reduceMotion ? 0 : (Math.random() - 0.5) * 90;
+    const from = `translate(${(Math.cos(angle) * dist).toFixed(1)}px, ${(Math.sin(angle) * dist).toFixed(1)}px) rotate(${spin.toFixed(1)}deg)`;
+    pieces += `<g class="pz-piece" style="transform-origin:${cx}px ${cy}px;transform:${from}">` +
+      `<use href="#pz-art" clip-path="url(#pz-clip-${i})"/><path class="pz-edge" d="${d}"/></g>`;
+  });
+
+  svg.innerHTML = `<defs>${defs}</defs><g>${slots}</g><g>${pieces}</g>`;
+
+  // Shuffle the placement order so the picture emerges unpredictably.
+  const els = Array.from(svg.querySelectorAll('.pz-piece'));
+  for (let i = els.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [els[i], els[j]] = [els[j], els[i]];
+  }
+
+  // Pieces snap in one at a time so a fast (cached) load still shows the assembly.
+  const STAGGER_MS = reduceMotion ? 20 : 90;
+  let placed = 0;
+  let target = 0;
+  let ticking = false;
+
+  function placeNext() {
+    if (placed >= target) {
+      ticking = false;
+      return;
+    }
+    els[placed++].classList.add('is-placed');
+    if (placed === els.length) {
+      svg.classList.add('is-complete');
+      if (onComplete) setTimeout(onComplete, reduceMotion ? 200 : 900);
+    }
+    setTimeout(placeNext, STAGGER_MS);
+  }
+
+  return {
+    setProgress(progress) {
+      // The final piece is held back until loading is truly complete.
+      target = progress >= 1 ? els.length : Math.min(Math.floor(progress * els.length), els.length - 1);
+      if (!ticking && placed < target) {
+        ticking = true;
+        placeNext();
+      }
+    },
+  };
 }
 
 // ============================================

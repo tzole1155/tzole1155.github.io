@@ -6,6 +6,8 @@ const IDLE_FBX = 'assets/Idle.fbx';
 // Gzipped .gvrm (STOREd zip inside, see tools/optimize_gvrm.py): the browser inflates it
 // natively, which is much faster than JSZip inflating each entry in JavaScript.
 const GVRM_PATH = 'assets/ga.gvrm.gz';
+// Used for the progress estimate when the server omits Content-Length.
+const GVRM_EXPECTED_BYTES = 7252803;
 
 const canvas = document.getElementById('hero-canvas');
 const container = document.getElementById('hero-viewer');
@@ -60,17 +62,58 @@ if (canvas && container) {
   // controls.addEventListener('end', () => logCameraState('controls:end'));
   // logCameraState('initial');
 
+  // Progress is reported to the site loader (js/main.js) as 0..1 over three stages:
+  // download 0–0.8, unpack 0.8–0.85, GVRM build 0.85–0.97 (estimated), ready 1.
+  function reportProgress(progress, stage, extra) {
+    window.dispatchEvent(new CustomEvent('gvrm-progress', {
+      detail: { progress, stage, ...extra },
+    }));
+  }
+
+  async function readWithProgress(res) {
+    const lengthHeader = Number(res.headers.get('Content-Length'));
+    // If the server inflates the .gz on the fly, Content-Length is the compressed size
+    // while the stream yields inflated bytes, so fall back to the received count.
+    let total = lengthHeader > 0 ? lengthHeader : GVRM_EXPECTED_BYTES;
+    if (!res.body) return res.blob();
+
+    const reader = res.body.getReader();
+    const chunks = [];
+    let loaded = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      loaded += value.byteLength;
+      if (loaded > total) total = loaded * 1.1;
+      reportProgress(0.8 * Math.min(loaded / total, 1), 'download', { loaded, total });
+    }
+    return new Blob(chunks);
+  }
+
   async function fetchGvrmUrl(path) {
     const res = await fetch(path);
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
-    let blob = await res.blob();
+    let blob = await readWithProgress(res);
     // Some servers send .gz with Content-Encoding: gzip, so the body arrives already
     // inflated; only decompress if it still starts with the gzip magic bytes.
     const magic = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
     if (magic[0] === 0x1f && magic[1] === 0x8b) {
+      reportProgress(0.8, 'unpack');
       blob = await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
     }
     return URL.createObjectURL(blob);
+  }
+
+  // GVRM.load exposes no progress, so ease toward 0.97 while it runs.
+  function creepProgress(from, to) {
+    let p = from;
+    reportProgress(p, 'build');
+    const id = setInterval(() => {
+      p += (to - p) * 0.05;
+      reportProgress(p, 'build');
+    }, 120);
+    return () => clearInterval(id);
   }
 
   async function initGvrm() {
@@ -88,8 +131,15 @@ if (canvas && container) {
 
     let gvrmUrl = null;
     try {
+      reportProgress(0, 'download');
       gvrmUrl = await fetchGvrmUrl(GVRM_PATH);
-      gvrm = await GVRM.load(gvrmUrl, scene, camera, renderer);
+      const stopCreep = creepProgress(0.85, 0.97);
+      try {
+        gvrm = await GVRM.load(gvrmUrl, scene, camera, renderer);
+      } finally {
+        stopCreep();
+      }
+      reportProgress(1, 'ready');
       if (loader_el) loader_el.classList.add('hidden');
       window.dispatchEvent(new Event('gvrm-ready'));
 
