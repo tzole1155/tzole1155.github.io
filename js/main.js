@@ -582,6 +582,11 @@ async function initBlogViewer() {
         tagsEl.innerHTML = meta.tags.map(t => `<span class="blog-tag">${t}</span>`).join('');
       }
       document.title = `${meta.title} — Georgios Albanis`;
+      // Per-post metadata for search engines (they render this page's JS).
+      const descEl = document.getElementById('post-description');
+      if (descEl && meta.excerpt) descEl.setAttribute('content', meta.excerpt);
+      const canonicalEl = document.getElementById('post-canonical');
+      if (canonicalEl) canonicalEl.setAttribute('href', `https://galbanis.dev/blog/viewer.html?post=${encodeURIComponent(slug)}`);
     }
 
     const mdRes = await fetch(`./posts/${slug}/index.md`);

@@ -150,7 +150,7 @@ Computer vision researcher and engineer working on human digitization. Adding a 
 ### Writing
 *Ongoing*
 
-- Long-form technical writing at [galbanis.dev/blog](https://tzole1155.github.io/blog/) on motion capture, digital humans, and the research behind them.
+- Long-form technical writing at [galbanis.dev/blog](https://galbanis.dev/blog/) on motion capture, digital humans, and the research behind them.
 
 ## Languages {chips}
 

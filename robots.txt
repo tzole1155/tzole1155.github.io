@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tzole1155.github.io/sitemap.xml
+Sitemap: https://galbanis.dev/sitemap.xml
